@@ -8,4 +8,9 @@ class Auth extends BaseController
     {
         return view("auth/login");
     }
+
+    public function forgotpassword()
+    {
+        return view("auth/lupa_password");
+    }
 }
