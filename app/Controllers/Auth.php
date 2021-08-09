@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class AuthController extends BaseController
+class Auth extends BaseController
 {
     public function index()
     {
