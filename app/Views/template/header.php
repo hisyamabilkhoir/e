@@ -7,7 +7,7 @@
     <title> E-Raport </title>
     <!-- <style type="text/css" id="debugbar_dynamic_style"></style> -->
     <link rel="stylesheet" href="<?php echo base_url('AdminLTE/dist'); ?>/css/adminlte.min.css">
-    <link rel="stylesheet" href="<?= base_url('bootstrap/css/bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/overlayScrollbars/css/OverlayScrollbars.css">
     <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/datatables-bs4/css/dataTables.bootstrap4.min.css">
