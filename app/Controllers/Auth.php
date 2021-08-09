@@ -6,6 +6,7 @@ class AuthController extends BaseController
 {
     public function index()
     {
-        echo "Halo its me";
+        //echo "hai";
+        return view("auth/login");
     }
 }
