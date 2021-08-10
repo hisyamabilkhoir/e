@@ -38,8 +38,8 @@
             <ul class="navbar-nav ml-auto">
                 <li>
                     <div class="image mr-2">
-                        <img src="" class="img-circle" width="30" height="30" alt="User Image">
-                        <a><b><?= session()->get('admin_name'); ?></b> - Administrtor |</a>
+                        <img src="<?= base_url('img/profile.png'); ?>" class="img-circle" width="30" height="30" alt="User Image">
+                        <a> - Administrtor |</a>
                     </div>
                 </li>
                 <li>

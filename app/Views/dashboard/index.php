@@ -28,10 +28,11 @@
                     <div class="col-sm-4">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <p>Barang Masuk</p>
+                                <h3>50</h3>
+                                <p>Siswa</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-user-graduate"></i>
                             </div>
                             <a href="<?= base_url('/barangmasuk') ?>" class="small-box-footer">
                                 info Lanjut <i class="fas fa-arrow-circle-right"></i>
@@ -41,10 +42,11 @@
                     <div class="col-sm-4">
                         <div class="small-box bg-gradient-success">
                             <div class="inner">
-                                <p>Users Registrasi</p>
+                                <h3>30</h3>
+                                <p>Guru</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-users"></i>
                             </div>
                             <a href="<?= base_url('/users') ?>" class="small-box-footer">
                                 info Lanjut <i class="fas fa-arrow-circle-right"></i>
@@ -54,38 +56,15 @@
                     <div class="col-sm-4">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <p>Barang Keluar</p>
+                                <h3>9</h3>
+                                <p>Kelas</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-home"></i>
                             </div>
                             <a href="<?= base_url('/barangkeluar') ?>" class="small-box-footer">
                                 Info Lanjut <i class="fas fa-arrow-circle-right"></i>
                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="m-0">Barang Keluar Terbaru</h5>
-                            </div>
-                            <div class="card-body">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="m-0">Barang Masuk Terbaru</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table table-responsive">
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
