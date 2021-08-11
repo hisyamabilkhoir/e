@@ -37,13 +37,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
+                            <a href="<?php echo base_url('Siswa'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-user-graduate text-white"></i>
                                 <p>Siswa</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
+                            <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
                                 <p>Wali Kelas</p>
                             </a>
