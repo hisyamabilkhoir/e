@@ -28,7 +28,7 @@
                                 <?php } ?>
 
 
-                                <form class="user" method="post" action="<?= base_url(); ?>/auth/proces_login_admin">
+                                <form class="user" method="post" action="<?= base_url(); ?>/auth/proces_login">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="email"
                                             name="email" placeholder="Email">

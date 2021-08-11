@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="<?php echo base_url('/'); ?>" class="brand-link">
         <span class="brand-text fw-bold">E-Raport</span>
-        <img src="<?= base_url('img/profile.png'); ?>" alt="Logo" class="img-circle elevation-2 user-panel" width="42" height="40">
+        <img src="<?= base_url('img/profile.png'); ?>" alt="Logo" class="img-circle elevation-2 user-panel" width="42"
+            height="40">
     </a>
 
     <div class="sidebar">
@@ -14,6 +15,7 @@
                     </a>
                 </li>
 
+
                 <li class="nav-header">Data</li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -23,7 +25,9 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+
                     <ul class="nav nav-treeview">
+                        <?php if (session()->get('level') == 1) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('TahunPelajaran'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-calendar text-white"></i>
@@ -42,6 +46,7 @@
                                 <p>Siswa</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
@@ -66,8 +71,35 @@
                                 <p>Operator</p>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if (session()->get('level') == 2) : ?>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
+                                <p>Wali Kelas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-users text-white"></i>
+                                <p>Guru Mapel</p>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if (session()->get('level') == 3) : ?>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-users text-white"></i>
+                                <p>Guru Mapel</p>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
+
+
                 </li>
+
 
                 <li class="nav-header">Akun</li>
                 <li class="nav-item">
@@ -77,7 +109,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('/login/logout'); ?>" class="nav-link">
+                    <a href="<?= base_url("Auth/logout"); ?>" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
                         <p class="text">Logout</p>
                     </a>
