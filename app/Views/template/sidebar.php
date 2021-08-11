@@ -25,13 +25,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url('barang'); ?>" class="nav-link">
+                            <a href="<?php echo base_url('TahunPelajaran'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-calendar text-white"></i>
                                 <p>Tahun Pelajaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('BarangMasuk'); ?>" class="nav-link">
+                            <a href="<?php echo base_url('Kelas'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-home text-white"></i>
                                 <p>Kelas</p>
                             </a>
