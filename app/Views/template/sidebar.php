@@ -50,7 +50,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
-                                <i class="nav-icon fas fa-user text-white"></i>
+                                <i class="nav-icon fas fa-user-tie text-white"></i>
                                 <p>Waka Akademik</p>
                             </a>
                         </li>
@@ -58,6 +58,12 @@
                             <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-users text-white"></i>
                                 <p>Guru Mapel</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('Operator'); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog text-white"></i>
+                                <p>Operator</p>
                             </a>
                         </li>
                     </ul>
