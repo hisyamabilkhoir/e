@@ -46,12 +46,19 @@
                             <h3 class='card-title'>Tambah Tahun Pelajaran</h3>
                         </div>
                         <div class='card-body'>
-                            <form method="post" action="http://localhost/aklas/years/add">
+                            <form method="post" action="<?= base_url("/TahunPelajaran/tambah"); ?>">
                                 <input type="hidden" name="_token" value="KYUtK07gJNCRNSxU2pOGprYaKdAYNrnhIg8t7lwt">
                                 <div class='form-group'>
-                                    <label>Tahun Pelajaran</label>
-                                    <input type='text' name='year' class='form-control' required placeholder="Tahun Pelajaran">
-                                    <small>Contoh : 2020 / 2021</small>
+                                    <label>Tahun Awal</label>
+                                    <input type='text' name='awal' class='form-control' required
+                                        placeholder="Tahun Awal">
+
+                                </div>
+                                <div class='form-group'>
+                                    <label>Tahun Akhir</label>
+                                    <input type='text' name='akhir' class='form-control' required
+                                        placeholder="Tahun Akhir">
+
                                 </div>
                                 <div class='form-group'>
                                     <label>
@@ -92,7 +99,9 @@
                                             Aktif
                                         </td>
                                         <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(1)" class='btn btn-xs btn-success'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year" onclick="edit_year(1)"
+                                                class='btn btn-xs btn-success'>
                                                 <i class='fa fa-edit'></i>
                                             </a>
                                         </td>
@@ -104,7 +113,9 @@
                                             Tidak Aktif
                                         </td>
                                         <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(2)" class='btn btn-xs btn-success'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year" onclick="edit_year(2)"
+                                                class='btn btn-xs btn-success'>
                                                 <i class='fa fa-edit'></i>
                                             </a>
                                         </td>
@@ -116,7 +127,9 @@
                                             Tidak Aktif
                                         </td>
                                         <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(3)" class='btn btn-xs btn-success'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year" onclick="edit_year(3)"
+                                                class='btn btn-xs btn-success'>
                                                 <i class='fa fa-edit'></i>
                                             </a>
                                         </td>
@@ -128,7 +141,9 @@
                                             Tidak Aktif
                                         </td>
                                         <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(4)" class='btn btn-xs btn-success'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year" onclick="edit_year(4)"
+                                                class='btn btn-xs btn-success'>
                                                 <i class='fa fa-edit'></i>
                                             </a>
                                         </td>
