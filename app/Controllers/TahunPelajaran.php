@@ -77,6 +77,7 @@ class TahunPelajaran extends BaseController
         }
 
         $this->tahun_pelajaran->save([
+            'id' => $this->req->getVar('id'),
             'tahun_awal' => $this->req->getVar('awal'),
             'tahun_akhir' => $this->req->getVar('akhir'),
             'status' => $this->req->getVar('active')
