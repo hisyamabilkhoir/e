@@ -36,6 +36,10 @@ $routes->get('/', 'Auth::index');
 
 $routes->get('/home', 'Home::index', ['filter' => 'login']);
 $routes->get('/kelas', 'Kelas::index', ['filter' => 'login']);
+$routes->get('/operator', 'Operator::index', ['filter' => 'login']);
+$routes->get('/siswa', 'Siswa::index', ['filter' => 'login']);
+$routes->get('/tahun_pelajar', 'TahunPelajaran::index', ['filter' => 'login']);
+$routes->get('/wali_kelas', 'WaliKelas::index', ['filter' => 'login']);
 
 /*
  * --------------------------------------------------------------------

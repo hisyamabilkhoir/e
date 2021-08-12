@@ -27,7 +27,7 @@
                     </a>
 
                     <ul class="nav nav-treeview">
-                        <?php if (session()->get('level') == 1) : ?>
+                        <?php if (session()->get('level') == 1 || session()->get('level') == 2 || session()->get('level') == 3) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('TahunPelajaran'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-calendar text-white"></i>
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <?php endif; ?>
-                        <?php if (session()->get('level') == 2) : ?>
+                        <?php if (session()->get('level') == 4) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
@@ -87,7 +87,7 @@
                         </li>
                         <?php endif; ?>
 
-                        <?php if (session()->get('level') == 3) : ?>
+                        <?php if (session()->get('level') == 5) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-users text-white"></i>
@@ -109,7 +109,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url("Auth/logout"); ?>" class="nav-link">
+                    <a href="<?= base_url(); ?>/auth/logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
                         <p class="text">Logout</p>
                     </a>

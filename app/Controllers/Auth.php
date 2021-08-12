@@ -48,8 +48,12 @@ class Auth extends BaseController
                     if ($data['level'] == 1) {
                         return redirect()->to(base_url('/home'));
                     } else if ($data['level'] == 2) {
-                        return redirect()->to("/WaliKelas");
+                        return redirect()->to("/home");
                     } else if ($data['level'] == 3) {
+                        return redirect()->to("/home");
+                    } else if ($data['level'] == 4) {
+                        return redirect()->to("/home");
+                    } else if ($data['level'] == 5) {
                         return redirect()->to("/home");
                     }
                 } else {
@@ -70,8 +74,10 @@ class Auth extends BaseController
     {
         // session() = session();
         session()->destroy();
+
         session()->setFlashdata('msg', 'Berhasil Logout!');
         // session()->des
-        return redirect()->to(base_url("/Auth"));
+        return redirect()->to(base_url());
+        //return redirect()->to("/");
     }
 }
