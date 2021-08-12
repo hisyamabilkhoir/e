@@ -37,6 +37,8 @@ $routes->get('/', 'Auth::index');
 $routes->get('/home', 'Home::index', ['filter' => 'login']);
 $routes->get('/kelas', 'Kelas::index', ['filter' => 'login']);
 
+$routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -1,8 +1,23 @@
 <?php echo view('template/header'); ?>
 <?php echo view('template/sidebar'); ?>
 
+<script type="text/javascript">
+    function edit_year(id) {
+        // console.log(id);
+        $.ajax({
+            url: "<?= base_url('/TahunPelajaran/edit') ?>",
+            type: "GET",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                $("#form-edit-year").html(data)
+            }
+        });
+    }
+</script>
+
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -14,11 +29,10 @@
     </div>
     <!-- /.content-header -->
 
+
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-
-
             <div class="modal fade" id="modal-form-edit-year">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -50,14 +64,12 @@
                                 <input type="hidden" name="_token" value="KYUtK07gJNCRNSxU2pOGprYaKdAYNrnhIg8t7lwt">
                                 <div class='form-group'>
                                     <label>Tahun Awal</label>
-                                    <input type='text' name='awal' class='form-control' required
-                                        placeholder="Tahun Awal">
+                                    <input type='text' name='awal' class='form-control' required placeholder="Tahun Awal">
 
                                 </div>
                                 <div class='form-group'>
                                     <label>Tahun Akhir</label>
-                                    <input type='text' name='akhir' class='form-control' required
-                                        placeholder="Tahun Akhir">
+                                    <input type='text' name='akhir' class='form-control' required placeholder="Tahun Akhir">
 
                                 </div>
                                 <div class='form-group'>
@@ -92,62 +104,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class='text-center'>1</td>
-                                        <td class='text-center'>2017 / 2018</td>
-                                        <td class='text-center'>
-                                            Aktif
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
-                                                data-target="#modal-form-edit-year" onclick="edit_year(1)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class='text-center'>2</td>
-                                        <td class='text-center'>2018 / 2019</td>
-                                        <td class='text-center'>
-                                            Tidak Aktif
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
-                                                data-target="#modal-form-edit-year" onclick="edit_year(2)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class='text-center'>3</td>
-                                        <td class='text-center'>2019 / 2020</td>
-                                        <td class='text-center'>
-                                            Tidak Aktif
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
-                                                data-target="#modal-form-edit-year" onclick="edit_year(3)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class='text-center'>4</td>
-                                        <td class='text-center'>2020/2021</td>
-                                        <td class='text-center'>
-                                            Tidak Aktif
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
-                                                data-target="#modal-form-edit-year" onclick="edit_year(4)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($tahunPelajaran as $tp) : ?>
+                                        <tr>
+                                            <td class='text-center'><?= $i++ ?></td>
+                                            <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?></td>
+                                            <td class='text-center'>
+                                                <?php
+                                                echo $tp["status"] == '1' ? 'Aktif' : 'Tidak Aktif';
+                                                ?>
+                                            </td>
+                                            <td class='text-center'>
+                                                <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(<?php echo $tp['id'] ?>)" class='btn btn-xs btn-success'>
+                                                    <i class='fa fa-edit'></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
