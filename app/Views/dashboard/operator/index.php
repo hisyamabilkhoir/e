@@ -39,10 +39,11 @@
                                 <div class='form-group'>
                                     <label>Tingkat</label>
                                     <select name='tingkat' class='form-control'>
-                                        <option value="guru">Guru</option>
-                                        <option value="waka_akademik">Waka Akademik</option>
-                                        <option value="kepala_sekolah">Kepala Sekolah</option>
                                         <option value="operator">Operator</option>
+                                        <option value="kepala_sekolah">Kepala Sekolah</option>
+                                        <option value="waka_akademik">Waka Akademik</option>
+                                        <option value="guru">Wali Kelas</option>
+                                        <option value="guru">Guru Mapel</option>
                                     </select>
                                 </div>
                                 <div class='form-group'>
