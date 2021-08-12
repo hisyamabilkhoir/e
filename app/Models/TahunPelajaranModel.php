@@ -7,14 +7,22 @@ use CodeIgniter\Model;
 class TahunPelajaranModel extends Model
 {
     protected $table = 'tahun_pelajaran';
-    protected $allowedFields = ['tahun_awal', 'tahun_akhir'];
+    protected $allowedFields = ['tahun_awal', 'tahun_akhir', 'status'];
+    public function getTahunPelajaran($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id' => $id])->first();
+    }
 
-    // public function getKomik($slug = false)
-    // {
-    //     if ($slug == false) {
-    //         return $this->findAll();
-    //     }
+    public function getActive($status)
+    {
+        return $this->where(['status' => $status])->first();
+    }
 
-    //     return $this->where(['slug' => $slug])->first();
-    // }
+    public function updateJumlah($jml, $id)
+    {
+        return $this->query("UPDATE barang SET jumlah = '$jml' WHERE id_barang = $id ");
+    }
 }

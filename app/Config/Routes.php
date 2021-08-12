@@ -41,6 +41,8 @@ $routes->get('/siswa', 'Siswa::index', ['filter' => 'login']);
 $routes->get('/tahun_pelajar', 'TahunPelajaran::index', ['filter' => 'login']);
 $routes->get('/wali_kelas', 'WaliKelas::index', ['filter' => 'login']);
 
+$routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
