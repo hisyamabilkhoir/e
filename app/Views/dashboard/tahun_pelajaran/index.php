@@ -35,7 +35,7 @@
             <?php if ($validation->hasError('update_akhir')) { ?>
                 <div class="alert alert-danger">
                     <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun akhir Error!</h4>
-                    <?php echo $validation->getError('update_awal'); ?>
+                    <?php echo $validation->getError('update_akhir'); ?>
                 </div>
             <?php } ?>
 
