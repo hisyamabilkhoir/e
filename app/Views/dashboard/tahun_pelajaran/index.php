@@ -25,6 +25,42 @@
                     <h1 class="m-0 text-dark">Tahun Pelajaran</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
+
+            <?php if ($validation->hasError('update_awal')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun awal Error!</h4>
+                    <?php echo $validation->getError('update_awal'); ?>
+                </div>
+            <?php } ?>
+            <?php if ($validation->hasError('update_akhir')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun akhir Error!</h4>
+                    <?php echo $validation->getError('update_awal'); ?>
+                </div>
+            <?php } ?>
+
+            <?php if (!empty(session()->getFlashdata('warning'))) { ?>
+                <div class="alert alert-warning">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i> Peringatan!</h4>
+                    <?php echo session()->getFlashdata('warning'); ?>
+                </div>
+            <?php } ?>
+
+            <?php
+            if (!empty(session()->getFlashdata('success'))) { ?>
+                <div class="alert p-4 alert-success">
+                    <h4><i class="icon fas fa-check"></i> Selamat!</h4>
+                    <h6><?php echo session()->getFlashdata('success'); ?></h6>
+                </div>
+            <?php } ?>
+
+            <?php if (!empty(session()->getFlashdata('danger'))) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-remove"></i> Maaf!</h4>
+                    <?php echo session()->getFlashdata('danger'); ?>
+                </div>
+            <?php } ?>
+
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -64,13 +100,17 @@
                                 <input type="hidden" name="_token" value="KYUtK07gJNCRNSxU2pOGprYaKdAYNrnhIg8t7lwt">
                                 <div class='form-group'>
                                     <label>Tahun Awal</label>
-                                    <input type='text' name='awal' class='form-control' required placeholder="Tahun Awal">
-
+                                    <input type='text' name='awal' class='form-control <?= ($validation->hasError('awal')) ? 'is-invalid' : ''; ?>' required placeholder="Tahun Awal" value="<?= old('awal'); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('awal'); ?>
+                                    </div>
                                 </div>
                                 <div class='form-group'>
                                     <label>Tahun Akhir</label>
-                                    <input type='text' name='akhir' class='form-control' required placeholder="Tahun Akhir">
-
+                                    <input type='text' name='akhir' class='form-control <?= ($validation->hasError('akhir')) ? 'is-invalid' : ''; ?>' required placeholder="Tahun Akhir" value="<?= old('akhir'); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('akhir'); ?>
+                                    </div>
                                 </div>
                                 <div class='form-group'>
                                     <label>
@@ -100,7 +140,7 @@
                                         <th>No</th>
                                         <th>Tahun</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th>Pilihan</th>
                                     </tr>
                                 </thead>
                                 <tbody>

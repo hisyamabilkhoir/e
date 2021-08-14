@@ -27,9 +27,6 @@ class AjaxController extends BaseController
         $data = [
             "tahunPelajaran" => $this->tahun_pelajaran->getTahunPelajaran($tahunPelajaran),
         ];
-
-        // dd($data);
-
         return view("ajaxs/form_edit_tahun_pelajaran", $data);
     }
 }

@@ -2,11 +2,11 @@
     <input type="hidden" name='id' value="<?= $tahunPelajaran['id']; ?>">
     <div class='form-group'>
         <label>Tahun Awal</label>
-        <input type='text' name='awal' value="<?= $tahunPelajaran['tahun_awal'] ?>" class='form-control' required placeholder="Tahun Awal">
+        <input type='text' name='update_awal' value="<?= $tahunPelajaran['tahun_awal'] ?>" class='form-control' required placeholder="Tahun Awal">
     </div>
     <div class='form-group'>
         <label>Tahun Akhir</label>
-        <input type='text' name='akhir' value="<?= $tahunPelajaran['tahun_akhir']; ?>" class='form-control' required placeholder="Tahun Akhir">
+        <input type='text' name='update_akhir' value="<?= $tahunPelajaran['tahun_akhir']; ?>" class='form-control' required placeholder="Tahun Akhir">
     </div>
     <div class='form-group'>
         <label>

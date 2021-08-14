@@ -7,14 +7,17 @@ use CodeIgniter\Model;
 class PegawaiModel extends Model
 {
     protected $table = 'pegawai';
-    protected $allowedFields = ['akun_email', 'akun_password', 'level'];
+    protected $allowedFields = ['nama', 'nip', 'nik', 'akun_email', 'akun_password', 'status', 'level'];
+    public function getPegawai($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id' => $id])->first();
+    }
 
-    // public function getKomik($slug = false)
-    // {
-    //     if ($slug == false) {
-    //         return $this->findAll();
-    //     }
-
-    //     return $this->where(['slug' => $slug])->first();
-    // }
+    public function getWalas($level)
+    {
+        return $this->where(['level' => $level])->findAll();
+    }
 }
