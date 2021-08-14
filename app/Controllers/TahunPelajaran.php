@@ -4,13 +4,16 @@ namespace App\Controllers;
 
 use App\Models\TahunPelajaranModel;
 
+
 class TahunPelajaran extends BaseController
 {
+
 
     protected $tahun_pelajaran;
     public function __construct()
     {
         $this->tahun_pelajaran = new TahunPelajaranModel();
+
         $this->req = \Config\Services::request();
     }
 
@@ -55,7 +58,6 @@ class TahunPelajaran extends BaseController
 
     public function update()
     {
-
         if ($this->req->getVar('active') == '1') {
             $resultTP = $this->tahun_pelajaran->getActive($this->req->getVar('active'));
             if ($resultTP != null) {

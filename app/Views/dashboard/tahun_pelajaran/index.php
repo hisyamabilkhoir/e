@@ -2,19 +2,19 @@
 <?php echo view('template/sidebar'); ?>
 
 <script type="text/javascript">
-    function edit_year(id) {
-        // console.log(id);
-        $.ajax({
-            url: "<?= base_url('/TahunPelajaran/edit') ?>",
-            type: "GET",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                $("#form-edit-year").html(data)
-            }
-        });
-    }
+function edit_year(id) {
+    // console.log(id);
+    $.ajax({
+        url: "<?= base_url('/TahunPelajaran/edit') ?>",
+        type: "GET",
+        data: {
+            id: id,
+        },
+        success: function(data) {
+            $("#form-edit-year").html(data)
+        }
+    });
+}
 </script>
 
 <div class="content-wrapper">
@@ -64,12 +64,14 @@
                                 <input type="hidden" name="_token" value="KYUtK07gJNCRNSxU2pOGprYaKdAYNrnhIg8t7lwt">
                                 <div class='form-group'>
                                     <label>Tahun Awal</label>
-                                    <input type='text' name='awal' class='form-control' required placeholder="Tahun Awal">
+                                    <input type='text' name='awal' class='form-control' required
+                                        placeholder="Tahun Awal">
 
                                 </div>
                                 <div class='form-group'>
                                     <label>Tahun Akhir</label>
-                                    <input type='text' name='akhir' class='form-control' required placeholder="Tahun Akhir">
+                                    <input type='text' name='akhir' class='form-control' required
+                                        placeholder="Tahun Akhir">
 
                                 </div>
                                 <div class='form-group'>
@@ -107,20 +109,24 @@
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tahunPelajaran as $tp) : ?>
-                                        <tr>
-                                            <td class='text-center'><?= $i++ ?></td>
-                                            <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?></td>
-                                            <td class='text-center'>
-                                                <?php
+                                    <tr>
+                                        <td class='text-center'><?= $i++ ?></td>
+                                        <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?>
+                                        </td>
+                                        <td class='text-center'>
+                                            <?php
                                                 echo $tp["status"] == '1' ? 'Aktif' : 'Tidak Aktif';
                                                 ?>
-                                            </td>
-                                            <td class='text-center'>
-                                                <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(<?php echo $tp['id'] ?>)" class='btn btn-xs btn-success'>
-                                                    <i class='fa fa-edit'></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                        <td class='text-center'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year"
+                                                onclick="edit_year(<?php echo $tp['id'] ?>)"
+                                                class='btn btn-xs btn-success'>
+                                                <i class='fa fa-edit'></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
