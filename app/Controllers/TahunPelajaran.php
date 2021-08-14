@@ -4,13 +4,16 @@ namespace App\Controllers;
 
 use App\Models\TahunPelajaranModel;
 
+
 class TahunPelajaran extends BaseController
 {
+
 
     protected $tahun_pelajaran;
     public function __construct()
     {
         $this->tahun_pelajaran = new TahunPelajaranModel();
+
         $this->req = \Config\Services::request();
     }
 

@@ -100,6 +100,7 @@
                                 <input type="hidden" name="_token" value="KYUtK07gJNCRNSxU2pOGprYaKdAYNrnhIg8t7lwt">
                                 <div class='form-group'>
                                     <label>Tahun Awal</label>
+
                                     <input type='text' name='awal' class='form-control <?= ($validation->hasError('awal')) ? 'is-invalid' : ''; ?>' required placeholder="Tahun Awal" value="<?= old('awal'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('awal'); ?>
@@ -111,6 +112,7 @@
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('akhir'); ?>
                                     </div>
+
                                 </div>
                                 <div class='form-group'>
                                     <label>
@@ -149,7 +151,8 @@
                                     <?php foreach ($tahunPelajaran as $tp) : ?>
                                         <tr>
                                             <td class='text-center'><?= $i++ ?></td>
-                                            <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?></td>
+                                            <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?>
+                                            </td>
                                             <td class='text-center'>
                                                 <?php
                                                 echo $tp["status"] == '1' ? 'Aktif' : 'Tidak Aktif';

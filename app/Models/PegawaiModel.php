@@ -7,13 +7,14 @@ use CodeIgniter\Model;
 class PegawaiModel extends Model
 {
     protected $table = 'pegawai';
-    protected $allowedFields = ['nama', 'nip', 'nik', 'akun_email', 'akun_password', 'status', 'level'];
-    public function getPegawai($id = false)
+    protected $allowedFields = ['kode', 'nip', 'nik', 'nama', 'akun_email', 'akun_password', 'status', 'level'];
+    public function getPegawai($kode = false)
     {
-        if ($id == false) {
+        if ($kode == false) {
             return $this->findAll();
         }
-        return $this->where(['id' => $id])->first();
+
+        return $this->where(['kode' => $kode])->first();
     }
 
     public function getWalas($level)
