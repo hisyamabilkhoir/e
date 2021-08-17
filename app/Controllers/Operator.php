@@ -94,10 +94,122 @@ class Operator extends BaseController
         // return view('dashboard/operator/index', $data);
     }
 
-    public function hapus($id)
+    public function hapus($kode)
     {
         //$user = $this->tahun_pelajaran->find($id);
-        $this->pegawai->delete($id);
+        // $kode_pegawai = $this->pegawai->getPegawai($kode);
+        // dd($kode);
+
+        $this->pegawai->delete(['kode' => $kode]);
+        //$this->pegawai->delete($kode);
         return redirect()->to(base_url('Operator'));
+    }
+
+    public function ubah($kode)
+    {
+        $data = [
+            'validation' => \Config\Services::validation(),
+            "pegawai" => $this->pegawai->getPegawai($kode),
+        ];
+
+        return view('dashboard/operator/ubah', $data);
+    }
+
+    public function proses_ubah()
+    {
+        $kode = $this->request->getVar('kode');
+
+
+        //cek data pegawai untuk validasi ubah
+        $data_pegawai = $this->pegawai->getPegawai($kode);
+
+        if ($data_pegawai['akun_email'] == $this->request->getVar('email')) {
+            $rule_email = 'required';
+        } else {
+            $rule_email = 'required|is_unique[pegawai.akun_email]|valid_email|max_length[50]';
+        }
+
+        if ($data_pegawai['nip'] == $this->request->getVar('nip')) {
+            $rule_nip = 'required';
+        } else {
+            $rule_nip = 'required|numeric|is_unique[pegawai.nip]';
+        }
+
+        if ($data_pegawai['nik'] == $this->request->getVar('nik')) {
+            $rule_nik = 'required';
+        } else {
+            $rule_nik = 'required|numeric|is_unique[pegawai.nik]';
+        }
+
+
+
+
+        if (!$this->validate([
+            'nama'          => [
+                'rules' => 'required|min_length[3]|max_length[20]',
+                'errors' => [
+                    'required' => 'Masukkan nama terlebih dahulu',
+                    'min_length' => 'Masukkan minimal 3 huruf',
+                    'max_length' => 'Masukkan jangan lebih dari 20 huruf',
+                ],
+            ],
+            'nip'          => [
+                'rules' => $rule_nip,
+                'errors' => [
+                    'required' => 'Masukkan nip terlebih dahulu',
+                    'numeric' => 'Hanya boleh diisi angka !',
+                    'is_unique' => 'nip sudah ada',
+                ],
+            ],
+            'nik'          => [
+                'rules' => $rule_nik,
+                'errors' => [
+                    'required' => 'Masukkan nik terlebih dahulu',
+                    'numeric' => 'Hanya boleh diisi angka !',
+                    'is_unique' => 'nik sudah ada',
+                ],
+            ],
+            'email'         => [
+                'rules' => $rule_email,
+                'errors' => [
+                    'required' => 'Masukkan email terlebih dahulu',
+                    'max_length' => 'Masukkan jangan lebih dari 50 huruf',
+                    'valid_email' => 'Email Tidak valid',
+                    'is_unique' => 'Email sudah ada',
+                ]
+            ],
+            'password'      => [
+                'rules' => 'required|max_length[200]',
+                'errors' => [
+                    'required' => 'Masukkan password terlebih dahulu',
+                    'max_length' => 'Masukkan password jangan lebih dari 200 huruf',
+                ],
+            ],
+            'Confirmpassword'      => [
+                'confpassword'  => 'matches[password]',
+                'errors' => [
+                    'matches' => 'Konfirmasi password yang anda masukkan salah'
+                ],
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/operator/ubah/' . $kode))->withInput()->with('validation', $validation);
+        }
+
+
+        $this->pegawai->save([
+            'kode' => $kode,
+            'nip' => $this->request->getVar('nip'),
+            'nik' => $this->request->getVar('nik'),
+            'nama' => $this->request->getVar('nama'),
+            'akun_email' => $this->request->getVar('email'),
+            'akun_password' => $this->request->getVar('password'),
+            'status' => 1,
+            'level' => $this->request->getVar('level')
+        ]);
+
+        // session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
+
+        return redirect()->to('/home');
     }
 }

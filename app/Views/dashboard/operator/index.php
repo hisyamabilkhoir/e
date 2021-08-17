@@ -144,16 +144,35 @@ function edit_pegawai(kode) {
                                         <td class='text-center'><?= $p["nama"]; ?></td>
                                         <td><?= $p["akun_email"]; ?></td>
                                         <td class='text-center'>
-                                            <?= $p["level"] ?>
+                                            <?php if ($p['level'] == 1) : ?>
+                                            Operator
+                                            <?php endif; ?>
+                                            <?php if ($p['level'] == 2) : ?>
+                                            Kepala Sekolah
+                                            <?php endif; ?>
+                                            <?php if ($p['level'] == 3) : ?>
+                                            Waka Akademik
+                                            <?php endif; ?>
+                                            <?php if ($p['level'] == 4) : ?>
+                                            Wali Kelas
+                                            <?php endif; ?>
+                                            <?php if ($p['level'] == 5) : ?>
+                                            Guru Mapel
+                                            <?php endif; ?>
                                         </td>
                                         <td class='text-center'>
 
                                             <a href="javascript:void(0)" title="Edit-pegawai" data-toggle="modal"
                                                 data-target="#editPegawai"
                                                 onclick="edit_pegawai('<?php echo $p['kode'] ?>')"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
+                                                class='badge badge-warning'>
+                                                detail
                                             </a>
+
+                                            <a href="<?= base_url(); ?>/operator/ubah/<?= $p['kode']; ?>"
+                                                class="badge badge-success">ubah</a>
+                                            <a href="<?= base_url(); ?>/operator/hapus/<?= $p['kode']; ?>"
+                                                class="badge badge-danger hapus-sekolah">Hapus</a>
 
                                         </td>
 
