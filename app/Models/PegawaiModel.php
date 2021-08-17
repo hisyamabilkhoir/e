@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class PegawaiModel extends Model
 {
     protected $table = 'pegawai';
+    protected $primaryKey = 'kode';
     protected $allowedFields = ['kode', 'nip', 'nik', 'nama', 'akun_email', 'akun_password', 'status', 'level'];
     public function getPegawai($kode = false)
     {

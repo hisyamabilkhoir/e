@@ -45,6 +45,10 @@ $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
 $routes->get('/Kelas/edit', 'AjaxController::edit_kelas');
 $routes->get('/Operator/detail', 'AjaxController::edit_pegawai');
 
+//$routes->get('/operator/ubah/(:segment)', 'Operator::ubah/$1');
+
+//$routes->get('/operator/hapus', 'Operator::hapus');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
