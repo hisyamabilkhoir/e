@@ -1,10 +1,28 @@
 <?php echo view('template/header'); ?>
 <?php echo view('template/sidebar'); ?>
 
+<script type="text/javascript">
+    function edit_kelas(id) {
+        // console.log(id);
+        $.ajax({
+            url: "<?= base_url('/Kelas/edit') ?>",
+            type: "GET",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                // console.log(data);
+                $("#form-edit-kelas").html(data)
+            }
+        });
+    }
+</script>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
+
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"> Data Kelas
@@ -13,6 +31,35 @@
                     </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
+
+            <?php if ($validation->hasError('update_tingkat')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tingkat Error!</h4>
+                    <?php echo $validation->getError('update_tingkat'); ?>
+                </div>
+            <?php } ?>
+
+            <?php if ($validation->hasError('update_kelas')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data kelas Error!</h4>
+                    <?php echo $validation->getError('update_kelas'); ?>
+                </div>
+            <?php } ?>
+
+            <?php if ($validation->hasError('update_wali_kelas')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data wali kelas Error!</h4>
+                    <?php echo $validation->getError('update_wali_kelas'); ?>
+                </div>
+            <?php } ?>
+
+            <?php if ($validation->hasError('wali_kelas')) { ?>
+                <div class="alert alert-danger">
+                    <h4><i class="icon fas fa-exclamation-triangle"></i>Tambah data wali kelas Error!</h4>
+                    <?php echo $validation->getError('wali_kelas'); ?>
+                </div>
+            <?php } ?>
+
             <?php
             if (!empty(session()->getFlashdata('success'))) { ?>
                 <div class="alert p-4 alert-success">
@@ -28,6 +75,25 @@
                 </div>
             <?php } ?>
         </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="modal fade" id="modal-form-edit-kelas">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Kelas</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="form-edit-kelas">
+                </div>
+                <div class="modal-footer justify-content-between">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
     <!-- Main content -->
@@ -97,8 +163,8 @@
                                             <td class='text-center'><?= $k['kelas'] ?></td>
                                             <td><?= $k['nama'] ?></td>
                                             <td class='text-center'>
-                                                <a href="" class='btn btn-xs btn-success' title="Kelola Kelas">
-                                                    <i class='fa fa-cog'></i>
+                                                <a href="javascript:void(0)" title="Kelola Kelass" data-toggle="modal" data-target="#modal-form-edit-kelas" onclick="edit_kelas(<?php echo $k['id'] ?>)" class='btn btn-xs btn-success'>
+                                                    <i class='fa fa-edit'></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -21,6 +21,13 @@ class TahunPelajaranModel extends Model
         return $this->where(['status' => $status])->first();
     }
 
+    public function getNotActive($status)
+    {
+        return $this->where(['status' => $status])
+            ->select('id')
+            ->findAll();
+    }
+
     public function updateJumlah($jml, $id)
     {
         return $this->query("UPDATE barang SET jumlah = '$jml' WHERE id_barang = $id ");

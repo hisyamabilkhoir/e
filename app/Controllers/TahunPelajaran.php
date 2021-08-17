@@ -71,6 +71,7 @@ class TahunPelajaran extends BaseController
                     'tahun_akhir' => $this->req->getVar('akhir'),
                     'status' => $this->req->getVar('active')
                 ]);
+                session()->setFlashdata('success', 'Data berhasil di buat');
                 return redirect()->to(base_url('TahunPelajaran'));
             }
 
@@ -79,6 +80,7 @@ class TahunPelajaran extends BaseController
                 'tahun_akhir' => $this->req->getVar('akhir'),
                 'status' => $this->req->getVar('active')
             ]);
+            session()->setFlashdata('success', 'Data berhasil di buat');
             return redirect()->to(base_url('TahunPelajaran'));
         }
     }
@@ -141,6 +143,7 @@ class TahunPelajaran extends BaseController
                         'tahun_akhir' => $this->req->getVar('update_akhir'),
                         'status' => $this->req->getVar('active')
                     ]);
+                    session()->setFlashdata('success', 'Data berhasil di ubah');
                     return redirect()->to(base_url('TahunPelajaran'));
                 }
             }
@@ -151,14 +154,20 @@ class TahunPelajaran extends BaseController
                 'tahun_akhir' => $this->req->getVar('update_akhir'),
                 'status' => $this->req->getVar('active')
             ]);
+            session()->setFlashdata('success', 'Data berhasil di ubah');
             return redirect()->to(base_url('TahunPelajaran'));
         }
     }
 
     public function hapus($id)
     {
-        $user = $this->tahun_pelajaran->find($id);
+        $tahunPelajaran = $this->tahun_pelajaran->find($id);
+        if (!$tahunPelajaran) {
+            session()->setFlashdata('warning', 'Data yang di cari tidak ada');
+            return redirect()->to(base_url('TahunPelajaran'));
+        }
         $this->tahun_pelajaran->delete($id);
+        session()->setFlashdata('success', 'Data berhasil di hapus');
         return redirect()->to(base_url('TahunPelajaran'));
     }
 }
