@@ -27,7 +27,7 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"> Data Kelas
                         <br>
-                        <small>Tahun Pelajaran 2017 / 2018</small>
+                        <small>Tahun Pelajaran <?= $tahunActive['tahun_awal'] . ' / ' . $tahunActive['tahun_akhir'] ?></small>
                     </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->

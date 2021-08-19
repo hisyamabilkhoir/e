@@ -28,8 +28,9 @@ class Kelas extends BaseController
             return redirect()->to(base_url('TahunPelajaran'));
         }
         $data = [
-            "walas" => $this->walas->getWalas('5'),
+            "walas" => $this->walas->getWalas('4'),
             "kelas" => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+            "tahunActive" => $this->tahunPelajaran->getActive('1'),
             "validation" => \Config\Services::validation(),
         ];
         // dd($data['kelas']);

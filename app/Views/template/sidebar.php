@@ -74,21 +74,14 @@
                             </li>
                         <?php endif; ?>
                         <?php if (session()->get('level') == 4) : ?>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
-                                    <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
-                                    <p>Wali Kelas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
-                                    <i class="nav-icon fas fa-users text-white"></i>
-                                    <p>Guru Mapel</p>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if (session()->get('level') == 5) : ?>
+                            <?php if (session()->get('is_walas')) : ?>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url('WaliKelas'); ?>" class="nav-link">
+                                        <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
+                                        <p>Wali Kelas</p>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                             <li class="nav-item">
                                 <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
                                     <i class="nav-icon fas fa-users text-white"></i>

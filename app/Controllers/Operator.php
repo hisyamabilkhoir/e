@@ -64,7 +64,7 @@ class Operator extends BaseController
         }
 
         helper('text');
-        $code_random = random_string('alnum', 6,);
+        $code_random = random_string('alnum', 7,);
         $code = strtoupper($code_random);
 
         $this->pegawai->save([

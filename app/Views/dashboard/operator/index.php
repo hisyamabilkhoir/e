@@ -2,19 +2,19 @@
 <?php echo view('template/sidebar'); ?>
 
 <script type="text/javascript">
-function edit_pegawai(kode) {
-    console.log(kode);
-    $.ajax({
-        url: "<?= base_url('/Operator/detail') ?>",
-        type: "GET",
-        data: {
-            kode: kode,
-        },
-        success: function(data) {
-            $("#form-edit-pegawai").html(data)
-        }
-    });
-}
+    function edit_pegawai(kode) {
+        console.log(kode);
+        $.ajax({
+            url: "<?= base_url('/Operator/detail') ?>",
+            type: "GET",
+            data: {
+                kode: kode,
+            },
+            success: function(data) {
+                $("#form-edit-pegawai").html(data)
+            }
+        });
+    }
 </script>
 
 <div class="modal fade" id="editPegawai">
@@ -65,9 +65,7 @@ function edit_pegawai(kode) {
                                 <?= csrf_field(); ?>
                                 <div class='form-group'>
                                     <label>Nama</label>
-                                    <input type='text' name='nama' placeholder="Nama"
-                                        class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>"
-                                        required value="<?= old('nama'); ?>">
+                                    <input type='text' name='nama' placeholder="Nama" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" required value="<?= old('nama'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('nama'); ?>
                                     </div>
@@ -75,9 +73,7 @@ function edit_pegawai(kode) {
 
                                 <div class='form-group'>
                                     <label>Email</label>
-                                    <input type='email' name='email' placeholder="Email"
-                                        class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>"
-                                        required value="<?= old('email'); ?>">
+                                    <input type='email' name='email' placeholder="Email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" required value="<?= old('email'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('email'); ?>
                                     </div>
@@ -94,18 +90,14 @@ function edit_pegawai(kode) {
                                 </div>
                                 <div class='form-group'>
                                     <label>Password</label>
-                                    <input type='password' name='password' placeholder="Password"
-                                        class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>"
-                                        required value="<?= old('password'); ?>">
+                                    <input type='password' name='password' placeholder="Password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" required value="<?= old('password'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('password'); ?>
                                     </div>
                                 </div>
                                 <div class='form-group'>
                                     <label>Konfirmasi Password</label>
-                                    <input type='password' name='Confirmpassword' placeholder="Confirm Password"
-                                        class="form-control <?= ($validation->hasError('Confirmpassword')) ? 'is-invalid' : ''; ?>"
-                                        required value="<?= old('Confirmpassword'); ?>">
+                                    <input type='password' name='Confirmpassword' placeholder="Confirm Password" class="form-control <?= ($validation->hasError('Confirmpassword')) ? 'is-invalid' : ''; ?>" required value="<?= old('Confirmpassword'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('Confirmpassword'); ?>
                                     </div>
@@ -139,47 +131,38 @@ function edit_pegawai(kode) {
                                     <?php $i = 1; ?>
                                     <?php foreach ($pegawai as $p) : ?>
 
-                                    <tr>
-                                        <td class='text-center'><?= $i++ ?></td>
-                                        <td class='text-center'><?= $p["nama"]; ?></td>
-                                        <td><?= $p["akun_email"]; ?></td>
-                                        <td class='text-center'>
-                                            <?php if ($p['level'] == 1) : ?>
-                                            Operator
-                                            <?php endif; ?>
-                                            <?php if ($p['level'] == 2) : ?>
-                                            Kepala Sekolah
-                                            <?php endif; ?>
-                                            <?php if ($p['level'] == 3) : ?>
-                                            Waka Akademik
-                                            <?php endif; ?>
-                                            <?php if ($p['level'] == 4) : ?>
-                                            Wali Kelas
-                                            <?php endif; ?>
-                                            <?php if ($p['level'] == 5) : ?>
-                                            Guru Mapel
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class='text-center'>
+                                        <tr>
+                                            <td class='text-center'><?= $i++ ?></td>
+                                            <td class='text-center'><?= $p["nama"]; ?></td>
+                                            <td><?= $p["akun_email"]; ?></td>
+                                            <td class='text-center'>
+                                                <?php if ($p['level'] == 1) : ?>
+                                                    Operator
+                                                <?php endif; ?>
+                                                <?php if ($p['level'] == 2) : ?>
+                                                    Kepala Sekolah
+                                                <?php endif; ?>
+                                                <?php if ($p['level'] == 3) : ?>
+                                                    Waka Akademik
+                                                <?php endif; ?>
+                                                <?php if ($p['level'] == 4) : ?>
+                                                    Guru
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class='text-center'>
+                                                <a href="javascript:void(0)" title="Edit-pegawai" data-toggle="modal" data-target="#editPegawai" onclick="edit_pegawai('<?php echo $p['kode'] ?>')" class='badge badge-warning'>
+                                                    detail
+                                                </a>
 
-                                            <a href="javascript:void(0)" title="Edit-pegawai" data-toggle="modal"
-                                                data-target="#editPegawai"
-                                                onclick="edit_pegawai('<?php echo $p['kode'] ?>')"
-                                                class='badge badge-warning'>
-                                                detail
-                                            </a>
+                                                <a href="<?= base_url(); ?>/operator/ubah/<?= $p['kode']; ?>" class="badge badge-success">ubah</a>
+                                                <a href="<?= base_url(); ?>/operator/hapus/<?= $p['kode']; ?>" class="badge badge-danger hapus-sekolah">Hapus</a>
 
-                                            <a href="<?= base_url(); ?>/operator/ubah/<?= $p['kode']; ?>"
-                                                class="badge badge-success">ubah</a>
-                                            <a href="<?= base_url(); ?>/operator/hapus/<?= $p['kode']; ?>"
-                                                class="badge badge-danger hapus-sekolah">Hapus</a>
-
-                                        </td>
+                                            </td>
 
 
 
 
-                                    </tr>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
