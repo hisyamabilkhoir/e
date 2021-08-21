@@ -10,7 +10,7 @@ class Operator extends BaseController
     public function __construct()
     {
         $this->pegawai = new PegawaiModel();
-        //$this->req = \Config\Services::request();
+        $this->req = \Config\Services::request();
     }
 
     public function index()
@@ -69,16 +69,16 @@ class Operator extends BaseController
 
         $this->pegawai->save([
             'kode' => $code,
-            'nama' => $this->request->getVar('nama'),
-            'akun_email' => $this->request->getVar('email'),
-            'akun_password' => $this->request->getVar('password'),
+            'nama' => $this->req->getVar('nama'),
+            'akun_email' => $this->req->getVar('email'),
+            'akun_password' => $this->req->getVar('password'),
             'status' => 1,
-            'level' => $this->request->getVar('level')
+            'level' => $this->req->getVar('level'),
         ]);
 
-        // session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
+        session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
 
-        return redirect()->to('/home');
+        return redirect()->to('/Operator');
     }
 
     public function detail_pegawai($kode)

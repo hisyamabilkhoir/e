@@ -13,7 +13,6 @@ class TahunPelajaran extends BaseController
     public function __construct()
     {
         $this->tahun_pelajaran = new TahunPelajaranModel();
-
         $this->req = \Config\Services::request();
     }
 

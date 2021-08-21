@@ -45,10 +45,6 @@ class AjaxController extends BaseController
         $data = [
             "DetailPegawai" => $this->pegawai->getPegawai($kode),
         ];
-        // dd($data);
-
-        // dd($data);
-
         return view("ajaxs/form_edit_pegawai", $data);
     }
 
@@ -63,5 +59,19 @@ class AjaxController extends BaseController
 
         ];
         return view("ajaxs/form_edit_kelas", $data);
+    }
+
+    public function detail_kelas()
+    {
+        // $year = Year::where("id",)->first();
+        $tahunActive = $this->tahun_pelajaran->getActive('1');
+        $kelas = $this->req->getVar('id');
+        // return '<h1>asd</h1>';
+        $data = [
+            'walas' => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+            'semua_kelas' => $this->kelas->getDetailKelas($kelas),
+        ];
+        // dd($data);
+        return view("ajaxs/detail_kelas", $data);
     }
 }

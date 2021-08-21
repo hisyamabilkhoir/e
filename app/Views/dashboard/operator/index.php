@@ -84,8 +84,7 @@
                                         <option value="1">Operator</option>
                                         <option value="2">Kepala Sekolah</option>
                                         <option value="3">Waka Akademik</option>
-                                        <option value="4">Wali Kelas</option>
-                                        <option value="5">Guru Mapel</option>
+                                        <option value="4">Guru</option>
                                     </select>
                                 </div>
                                 <div class='form-group'>

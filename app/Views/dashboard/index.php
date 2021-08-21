@@ -7,6 +7,11 @@
                     <?php echo session()->getFlashdata('msg2'); ?>
                 </div>
             <?php endif; ?>
+            <?php if (!empty(session()->getFlashdata('msg'))) : ?>
+                <div class="alert alert-success shadow mt-2">
+                    <?php echo session()->getFlashdata('msg'); ?>
+                </div>
+            <?php endif; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
