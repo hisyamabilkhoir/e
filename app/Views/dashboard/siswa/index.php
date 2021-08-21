@@ -109,7 +109,7 @@
                                             <a href="<?= base_url(); ?>/siswa/ubah/<?= $s['kode']; ?>"
                                                 class="badge badge-success">Telusuri</a>
                                             <a href="<?= base_url(); ?>/siswa/hapus/<?= $s['kode']; ?>"
-                                                class="badge badge-danger hapus-sekolah">Hapus</a>
+                                                class="badge badge-danger hapus-siswa">Hapus</a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
