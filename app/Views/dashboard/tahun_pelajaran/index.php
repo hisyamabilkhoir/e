@@ -2,19 +2,19 @@
 <?php echo view('template/sidebar'); ?>
 
 <script type="text/javascript">
-    function edit_year(id) {
-        // console.log(id);
-        $.ajax({
-            url: "<?= base_url('/TahunPelajaran/edit') ?>",
-            type: "GET",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                $("#form-edit-year").html(data)
-            }
-        });
-    }
+function edit_year(id) {
+    // console.log(id);
+    $.ajax({
+        url: "<?= base_url('/TahunPelajaran/edit') ?>",
+        type: "GET",
+        data: {
+            id: id,
+        },
+        success: function(data) {
+            $("#form-edit-year").html(data)
+        }
+    });
+}
 </script>
 
 <div class="content-wrapper">
@@ -27,38 +27,38 @@
             </div><!-- /.row -->
 
             <?php if ($validation->hasError('update_awal')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun awal Error!</h4>
-                    <?php echo $validation->getError('update_awal'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun awal Error!</h4>
+                <?php echo $validation->getError('update_awal'); ?>
+            </div>
             <?php } ?>
             <?php if ($validation->hasError('update_akhir')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun akhir Error!</h4>
-                    <?php echo $validation->getError('update_akhir'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tahun akhir Error!</h4>
+                <?php echo $validation->getError('update_akhir'); ?>
+            </div>
             <?php } ?>
 
             <?php if (!empty(session()->getFlashdata('warning'))) { ?>
-                <div class="alert alert-warning">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i> Peringatan!</h4>
-                    <?php echo session()->getFlashdata('warning'); ?>
-                </div>
+            <div class="alert alert-warning">
+                <h4><i class="icon fas fa-exclamation-triangle"></i> Peringatan!</h4>
+                <?php echo session()->getFlashdata('warning'); ?>
+            </div>
             <?php } ?>
 
             <?php
             if (!empty(session()->getFlashdata('success'))) { ?>
-                <div class="alert p-4 alert-success">
-                    <h4><i class="icon fas fa-check"></i> Selamat!</h4>
-                    <h6><?php echo session()->getFlashdata('success'); ?></h6>
-                </div>
+            <div class="alert p-4 alert-success">
+                <h4><i class="icon fas fa-check"></i> Selamat!</h4>
+                <h6><?php echo session()->getFlashdata('success'); ?></h6>
+            </div>
             <?php } ?>
 
             <?php if (!empty(session()->getFlashdata('danger'))) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-remove"></i> Maaf!</h4>
-                    <?php echo session()->getFlashdata('danger'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-remove"></i> Maaf!</h4>
+                <?php echo session()->getFlashdata('danger'); ?>
+            </div>
             <?php } ?>
 
         </div><!-- /.container-fluid -->
@@ -72,7 +72,7 @@
             <div class="modal fade" id="modal-form-edit-year">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header text-gray-100" style="background-color: #17a2b8; color: white;">
                             <h4 class="modal-title">Edit Tahun Pelajaran</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -101,18 +101,48 @@
                                 <div class='form-group'>
                                     <label>Tahun Awal</label>
 
-                                    <input type='text' name='awal' class='form-control <?= ($validation->hasError('awal')) ? 'is-invalid' : ''; ?>' required placeholder="Tahun Awal" value="<?= old('awal'); ?>">
+                                    <input type='text' name='awal'
+                                        class='form-control <?= ($validation->hasError('awal')) ? 'is-invalid' : ''; ?>'
+                                        required placeholder="Tahun Awal" value="<?= old('awal'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('awal'); ?>
                                     </div>
                                 </div>
                                 <div class='form-group'>
                                     <label>Tahun Akhir</label>
-                                    <input type='text' name='akhir' class='form-control <?= ($validation->hasError('akhir')) ? 'is-invalid' : ''; ?>' required placeholder="Tahun Akhir" value="<?= old('akhir'); ?>">
+                                    <input type='text' name='akhir'
+                                        class='form-control <?= ($validation->hasError('akhir')) ? 'is-invalid' : ''; ?>'
+                                        required placeholder="Tahun Akhir" value="<?= old('akhir'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('akhir'); ?>
                                     </div>
-
+                                </div>
+                                <div class='form-group'>
+                                    <label>Titimangsa Siswa Baru</label>
+                                    <input type='date' name='titimangsa_siswa_baru'
+                                        class='form-control <?= ($validation->hasError('titimangsa_siswa_baru')) ? 'is-invalid' : ''; ?>'
+                                        required placeholder="" value="<?= old('titimangsa_siswa_baru'); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('titimangsa_siswa_baru'); ?>
+                                    </div>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Titimangsa Semester Ganjil</label>
+                                    <input type='date' name='titimangsa_semester_ganjil'
+                                        class='form-control <?= ($validation->hasError('titimangsa_semester_ganjil')) ? 'is-invalid' : ''; ?>'
+                                        required placeholder="" value="<?= old('titimangsa_semester_ganjil'); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('titimangsa_semester_ganjil'); ?>
+                                    </div>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Titimangsa Semester Genap</label>
+                                    <input type='date' name='titimangsa_semester_genap'
+                                        class='form-control <?= ($validation->hasError('titimangsa_semester_genap')) ? 'is-invalid' : ''; ?>'
+                                        required placeholder="" value="<?= old('titimangsa_semester_genap'); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('titimangsa_semester_genap'); ?>
+                                    </div>
                                 </div>
                                 <div class='form-group'>
                                     <label>
@@ -130,6 +160,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class='col-md-9'>
                     <div class='card card-info'>
                         <div class='card-header'>
@@ -149,21 +182,24 @@
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tahunPelajaran as $tp) : ?>
-                                        <tr>
-                                            <td class='text-center'><?= $i++ ?></td>
-                                            <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?>
-                                            </td>
-                                            <td class='text-center'>
-                                                <?php
+                                    <tr>
+                                        <td class='text-center'><?= $i++ ?></td>
+                                        <td class='text-center'> <?= $tp["tahun_awal"] . "/" . $tp["tahun_akhir"]; ?>
+                                        </td>
+                                        <td class='text-center'>
+                                            <?php
                                                 echo $tp["status"] == '1' ? 'Aktif' : 'Tidak Aktif';
                                                 ?>
-                                            </td>
-                                            <td class='text-center'>
-                                                <a href="javascript:void(0)" title="Edit" data-toggle="modal" data-target="#modal-form-edit-year" onclick="edit_year(<?php echo $tp['id'] ?>)" class='btn btn-xs btn-success'>
-                                                    <i class='fa fa-edit'></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                        <td class='text-center'>
+                                            <a href="javascript:void(0)" title="Edit" data-toggle="modal"
+                                                data-target="#modal-form-edit-year"
+                                                onclick="edit_year(<?php echo $tp['id'] ?>)"
+                                                class='btn btn-xs btn-success'>
+                                                <i class='fa fa-edit'></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

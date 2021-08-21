@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class TahunPelajaranModel extends Model
 {
     protected $table = 'tahun_pelajaran';
-    protected $allowedFields = ['tahun_awal', 'tahun_akhir', 'status'];
+    protected $allowedFields = ['tahun_awal', 'tahun_akhir', 'status', 'titimangsa_siswa_baru', 'titimangsa_semester_ganjil', 'titimangsa_semester_genap'];
     public function getTahunPelajaran($id = false)
     {
         if ($id == false) {

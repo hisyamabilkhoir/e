@@ -64,21 +64,21 @@ class Operator extends BaseController
         }
 
         helper('text');
-        $code_random = random_string('alnum', 7,);
+        $code_random = random_string('alnum', 7);
         $code = strtoupper($code_random);
 
-        $this->pegawai->save([
+        $this->pegawai->insert([
             'kode' => $code,
             'nama' => $this->request->getVar('nama'),
             'akun_email' => $this->request->getVar('email'),
-            'akun_password' => $this->request->getVar('password'),
+            'akun_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'status' => 1,
-            'level' => $this->request->getVar('level')
+            'level' => (int)$this->request->getVar('level')
         ]);
 
-        // session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
+        session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
 
-        return redirect()->to('/home');
+        return redirect()->to('/operator');
     }
 
     public function detail_pegawai($kode)
@@ -96,12 +96,12 @@ class Operator extends BaseController
 
     public function hapus($kode)
     {
-        //$user = $this->tahun_pelajaran->find($id);
-        // $kode_pegawai = $this->pegawai->getPegawai($kode);
-        // dd($kode);
+
 
         $this->pegawai->delete(['kode' => $kode]);
-        //$this->pegawai->delete($kode);
+
+        session()->setFlashdata('msg', 'Data Berhasil dihapus !');
+
         return redirect()->to(base_url('Operator'));
     }
 
@@ -203,13 +203,13 @@ class Operator extends BaseController
             'nik' => $this->request->getVar('nik'),
             'nama' => $this->request->getVar('nama'),
             'akun_email' => $this->request->getVar('email'),
-            'akun_password' => $this->request->getVar('password'),
+            'akun_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'status' => 1,
             'level' => $this->request->getVar('level')
         ]);
 
-        // session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
+        session()->setFlashdata('msg', 'Data Berhasil diubah !');
 
-        return redirect()->to('/home');
+        return redirect()->to('/operator');
     }
 }

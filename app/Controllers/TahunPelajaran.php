@@ -62,13 +62,19 @@ class TahunPelajaran extends BaseController
                         'id' => $resultTP["id"],
                         'tahun_awal' => $resultTP["tahun_awal"],
                         'tahun_akhir' => $resultTP["tahun_akhir"],
-                        'status' => '0',
+                        'titimangsa_siswa_baru' => $resultTP["titimangsa_siswa_baru"],
+                        'titimangsa_semester_ganjil' => $resultTP["titimangsa_semester_ganjil"],
+                        'titimangsa_semester_genap' => $resultTP["titimangsa_semester_genap"],
+                        'status' => 0,
                     ]);
                 }
 
                 $this->tahun_pelajaran->save([
                     'tahun_awal' => $this->req->getVar('awal'),
                     'tahun_akhir' => $this->req->getVar('akhir'),
+                    'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
+                    'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
+                    'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
                     'status' => $this->req->getVar('active')
                 ]);
                 session()->setFlashdata('success', 'Data berhasil di buat');
@@ -78,6 +84,9 @@ class TahunPelajaran extends BaseController
             $this->tahun_pelajaran->save([
                 'tahun_awal' => $this->req->getVar('awal'),
                 'tahun_akhir' => $this->req->getVar('akhir'),
+                'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
+                'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
+                'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
                 'status' => $this->req->getVar('active')
             ]);
             session()->setFlashdata('success', 'Data berhasil di buat');
@@ -135,12 +144,18 @@ class TahunPelajaran extends BaseController
                         'id' => $resultTP["id"],
                         'tahun_awal' => $resultTP["tahun_awal"],
                         'tahun_akhir' => $resultTP["tahun_akhir"],
+                        'titimangsa_siswa_baru' => $resultTP["titimangsa_siswa_baru"],
+                        'titimangsa_semester_ganjil' => $resultTP["titimangsa_semester_ganjil"],
+                        'titimangsa_semester_genap' => $resultTP["titimangsa_semester_genap"],
                         'status' => '0',
                     ]);
                     $this->tahun_pelajaran->save([
                         'id' => $this->req->getVar('id'),
                         'tahun_awal' => $this->req->getVar('update_awal'),
                         'tahun_akhir' => $this->req->getVar('update_akhir'),
+                        'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
+                        'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
+                        'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
                         'status' => $this->req->getVar('active')
                     ]);
                     session()->setFlashdata('success', 'Data berhasil di ubah');
@@ -152,6 +167,9 @@ class TahunPelajaran extends BaseController
                 'id' => $this->req->getVar('id'),
                 'tahun_awal' => $this->req->getVar('update_awal'),
                 'tahun_akhir' => $this->req->getVar('update_akhir'),
+                'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
+                'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
+                'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
                 'status' => $this->req->getVar('active')
             ]);
             session()->setFlashdata('success', 'Data berhasil di ubah');
