@@ -1,3 +1,12 @@
+const peringatan = $('.peringatan').data('flashdata');
+if (peringatan) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Tahun pelajaran harus ada yang aktif',
+        text: peringatan,
+        footer: ''
+    });
+}
 
 $('.hapus-pegawai').on('click', function (e) {
 
@@ -38,3 +47,4 @@ $('.hapus-tahun-pelajaran').on('click', function (e) {
             }
       })
 });
+
