@@ -34,6 +34,7 @@
                             <th>NIS</th>
                             <th>Nama</th>
                             <th>L/P</th>
+                            <th>Pilihan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,11 @@
                                 <td><?= $sk['nama_lengkap'] ?></td>
                                 <td class='text-center'>
                                     <?= $sk['jk'] ?>
+                                </td>
+                                <td class='text-center'>
+                                    <a href="" data-toggle="modal" data-target="#modal-form-edit-student" class='btn btn-xs btn-success'>
+                                        Telusuri
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
