@@ -10,7 +10,7 @@ class Operator extends BaseController
     public function __construct()
     {
         $this->pegawai = new PegawaiModel();
-        //$this->req = \Config\Services::request();
+        $this->req = \Config\Services::request();
     }
 
     public function index()

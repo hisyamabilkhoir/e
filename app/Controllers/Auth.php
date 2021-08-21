@@ -38,7 +38,6 @@ class Auth extends BaseController
 
         $tahunActive = $this->tahun_pelajaran->getActive('1');
         $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();
-        // d($user);
 
 
         if ($walas == null) {
@@ -46,6 +45,7 @@ class Auth extends BaseController
         } else {
             $walas = $walas['id'];
         }
+        // dd($walas);
 
         if ($user) {
             //jika usernya aktif
@@ -59,6 +59,8 @@ class Auth extends BaseController
                         'email' => $user['akun_email'],
                         'level' => $user['level'],
                         'is_walas' => $walas,
+                        'tahun_awal' => $tahunActive['tahun_awal'],
+                        'tahun_akhir' => $tahunActive['tahun_akhir'],
                         'logged_in'     => true,
                     ];
                     // $this->session->set_userdata($data);

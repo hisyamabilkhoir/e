@@ -30,6 +30,17 @@ class KelasModel extends Model
             ->getResultArray();
     }
 
+    public function getDetailKelas($id_kelas)
+    {
+        return $this->table('kelas')
+            ->join('anggota_kelas', 'anggota_kelas.id_kelas = kelas.id')
+            ->join('siswa', 'siswa.kode = anggota_kelas.kode_siswa')
+            ->where(['kelas.id' => $id_kelas, 'anggota_kelas.id_kelas' => $id_kelas,])
+            ->select(['siswa.nomor_induk', 'siswa.nama_lengkap', 'siswa.jk'])
+            ->get()
+            ->getResultArray();
+    }
+
     public function getWalas($id_tahun_pelajaran, $kode_walas)
     {
         return $this->table('kelas')
