@@ -20,6 +20,7 @@
                 </form>
             </div>
         </div>
+
     </div>
     <div class='col-md-8'>
         <div class='card card-info'>
@@ -48,9 +49,10 @@
                                     <?= $sk['jk'] ?>
                                 </td>
                                 <td class='text-center'>
-                                    <a href="" data-toggle="modal" data-target="#modal-form-edit-student" class='btn btn-xs btn-success'>
+                                    <a href="" data-toggle="modal" data-target="#modal-form-edit-student" class='btn btn-xs btn-info'>
                                         Telusuri
                                     </a>
+                                    <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $id_kelas ?>" class="btn btn-success">Masukkan Siswa</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -464,7 +464,7 @@ class Siswa extends BaseController
             'alamat_wali' => $this->req->getVar('alamat_wali'),
             'nomor_telpon_wali' => $this->req->getVar('no_telepon_wali'),
             'pekerjaan_wali' => $this->req->getVar('pekerjaan_wali'),
-            'status' => 1,
+            // 'status' => 1,
         ]);
 
 
