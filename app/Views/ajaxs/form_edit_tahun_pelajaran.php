@@ -2,6 +2,30 @@
 </script>
 <script src="<?php echo base_url('AdminLTE/jss'); ?>/myscript.js">
 </script>
+
+<script type="text/javascript">
+$('.hapus-tahun-pelajaran').on('click', function(e) {
+
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Tahun Pelajaran Akan Dihapus!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus Data!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.location.href = href;
+        }
+    })
+});
+</script>
+
+
 <form method="post" action="<?= base_url('/TahunPelajaran/update'); ?>">
     <input type="hidden" name='id' value="<?= $tahunPelajaran['id']; ?>">
     <div class='form-group'>
@@ -49,7 +73,7 @@
             </div>
             <div class='col-md-6'>
                 <?php if ($tahunPelajaran["status"] != 1) : ?>
-                <a href="<?= base_url('TahunPelajaran/hapus/' . $tahunPelajaran['id']); ?>"
+                <a id="coba" href="<?= base_url('TahunPelajaran/hapus/' . $tahunPelajaran['id']); ?>"
                     class='btn btn-block btn-danger hapus-tahun-pelajaran'>
                     <i class='fa fa-trash'></i> Hapus
                 </a>

@@ -161,7 +161,13 @@ class TahunPelajaran extends BaseController
                     return redirect()->to(base_url('TahunPelajaran'));
                 }
             }
+            $activeForm = $this->req->getVar('id');
+            $resultTP = $this->tahun_pelajaran->getActive('1');
 
+            if ($resultTP['id'] == $activeForm) {
+                session()->setFlashdata('peringatan', 'Tahun pelajaran harus ada yang aktif');
+                return redirect()->to(base_url('TahunPelajaran'));
+            }
             $this->tahun_pelajaran->save([
                 'id' => $this->req->getVar('id'),
                 'tahun_awal' => $this->req->getVar('update_awal'),

@@ -40,6 +40,7 @@ $routes->get('/operator', 'Operator::index', ['filter' => 'login']);
 $routes->get('/siswa', 'Siswa::index', ['filter' => 'login']);
 $routes->get('/tahun_pelajar', 'TahunPelajaran::index', ['filter' => 'login']);
 $routes->get('/wali_kelas', 'WaliKelas::index', ['filter' => 'login']);
+$routes->get('/matapelajaran', 'MataPelajaran::index', ['filter' => 'login']);
 
 $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
 $routes->get('/Kelas/edit', 'AjaxController::edit_kelas');

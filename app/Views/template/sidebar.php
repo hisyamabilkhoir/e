@@ -56,6 +56,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php echo base_url('/matapelajaran'); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-chalkboard-teacher text-white"></i>
+                                <p>Mata Pelajaran</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?php echo base_url('BarangKeluar'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie text-white"></i>
                                 <p>Waka Akademik</p>
