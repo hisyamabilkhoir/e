@@ -3,12 +3,11 @@
 <script src="<?php echo base_url('AdminLTE/jss'); ?>/myscript.js">
 </script>
 
-<script type="text/javascript">
+<script>
 $('.hapus-tahun-pelajaran').on('click', function(e) {
-
     e.preventDefault();
     const href = $(this).attr('href');
-
+    console.log('sa');
     Swal.fire({
         title: 'Apakah Anda Yakin?',
         text: "Tahun Pelajaran Akan Dihapus!",
@@ -24,7 +23,6 @@ $('.hapus-tahun-pelajaran').on('click', function(e) {
     })
 });
 </script>
-
 
 <form method="post" action="<?= base_url('/TahunPelajaran/update'); ?>">
     <input type="hidden" name='id' value="<?= $tahunPelajaran['id']; ?>">
@@ -73,7 +71,8 @@ $('.hapus-tahun-pelajaran').on('click', function(e) {
             </div>
             <div class='col-md-6'>
                 <?php if ($tahunPelajaran["status"] != 1) : ?>
-                <a id="coba" href="<?= base_url('TahunPelajaran/hapus/' . $tahunPelajaran['id']); ?>"
+
+                <a href="<?= base_url('TahunPelajaran/hapus/' . $tahunPelajaran['id']); ?>"
                     class='btn btn-block btn-danger hapus-tahun-pelajaran'>
                     <i class='fa fa-trash'></i> Hapus
                 </a>

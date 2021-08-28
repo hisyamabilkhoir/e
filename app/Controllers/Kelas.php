@@ -94,7 +94,9 @@ class Kelas extends BaseController
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = $this->kelas->getWalas($tahunActive['id'], $this->req->getVar('update_wali_kelas'));
         $unique = '';
-        if ($data[0]["kode_walas"] == $this->req->getVar('update_wali_kelas') && $data[0]["id"] != $this->req->getVar('id')) {
+        // d($this->req->getVar('id'));
+        // dd($data);
+        if ($data == false || $data[0]["kode_walas"] == $this->req->getVar('update_wali_kelas') && $data[0]["id"] != $this->req->getVar('id')) {
             $unique = 'is_unique[kelas.kode_walas]|';
         } else if ($data[0]["kode_walas"] == $this->req->getVar('update_wali_kelas') && $data[0]["kelas"] != $this->req->getVar('update_kelas')) {
             $unique = '';

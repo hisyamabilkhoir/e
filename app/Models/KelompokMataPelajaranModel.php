@@ -10,7 +10,7 @@ class KelompokMataPelajaranModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['id_kelas', 'nama_kelompok', 'id_induk'];
 
-    public function getKelompokMatapelajaran($id = false)
+    public function getKelompokById($id = false)
     {
         if ($id == false) {
             return $this->findAll();
@@ -26,32 +26,23 @@ class KelompokMataPelajaranModel extends Model
             ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
             ->join('tahun_pelajaran', 'kelas.id_tahun_pelajaran = tahun_pelajaran.id')
             ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir,])
-            ->select(['kelas.tingkat', 'kelas.kelas', 'kelompok_mata_pelajaran.id', 'kelompok_mata_pelajaran.nama_kelompok'])
+            ->select(['kelas.tingkat', 'kelas.kelas', 'kelompok_mata_pelajaran.id', 'kelompok_mata_pelajaran.nama_kelompok', 'kelompok_mata_pelajaran.id_kelas'])
             ->get()
             ->getResultArray();
     }
 
-    public function getWalas($id_tahun_pelajaran, $kode_walas)
-    {
-        return $this->table('kelas')
-            ->where(['kelas.id_tahun_pelajaran' => $id_tahun_pelajaran, 'kelas.kode_walas' => $kode_walas])
-            ->select(['id', 'kelas', 'kode_walas'])
-            ->get()
-            ->getResultArray();
-    }
-
-
-    // public function getKelas($id_kelas)
-    // {
-    //     return $this->table('kelompok_mata_pelajaran')
-    //         ->where(['kelompok_mata_pelajaran.id_kelas' => $id_kelas])
-    //         ->select(['id', 'id_kelas'])
-    //         ->get()
-    //         ->getResultArray();
-    // }
 
     public function getKelas($id_kelas, $nama_kelompok)
     {
         return $this->where(['id_kelas' => $id_kelas, 'nama_kelompok' => $nama_kelompok])->first();
+    }
+
+
+    public function getNamaKelas()
+    {
+        return $this->db->table('kelompok_mata_pelajaran')
+            ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
+            ->get()
+            ->getResultArray();
     }
 }

@@ -1,11 +1,3 @@
-<footer class="main-footer clearfix">
-    <div class="float-right d-none d-sm-block">
-        Sistem Informasi Penjualan
-    </div>
-    <strong>Copyright &copy; 2021 <a href="<?php echo base_url('/'); ?>">MohamadFayyaz@SMKInformatika</a>.</strong>
-    All rights reserved.
-</footer>
-
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

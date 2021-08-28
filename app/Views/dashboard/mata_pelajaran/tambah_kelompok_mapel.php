@@ -62,7 +62,8 @@
                                         class='form-control <?= ($validation->hasError('id_kelas')) ? 'is-invalid' : ''; ?>'>
                                         <option value=''>Pilih kelas</option>
                                         <?php foreach ($kelas as $k) : ?>
-                                        <option value='<?= $k["id"]; ?>'><?= $k['tingkat']; ?> <?= $k['kelas']; ?>
+                                        <option value='<?= $k["id"]; ?>'><?= $k['tingkat']; ?>
+                                            <?= $k['kelas']; ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -70,6 +71,7 @@
                                         <?= $validation->getError('id_kelas'); ?>
                                     </div>
                                 </div>
+
 
                                 <div class='form-group'>
                                     <button type="submit" class='btn btn-block btn-info'>
@@ -104,13 +106,15 @@
                                     <tr>
                                         <td class='text-center'><?= $i++; ?></td>
                                         <td class='text-center'><?= $k['nama_kelompok']; ?></td>
-                                        <td class='text-center'><?= $k['tingkat'] ?> <?= $k['kelas'] ?></td>
                                         <td class='text-center'>
-                                            <a href="javascript:void(0)" title="Kelola Kelass" data-toggle="modal"
-                                                data-target="#modal-form-edit-kelas"
-                                                onclick="edit_kelas(<?php echo $k['id'] ?>)"
+
+                                            <?= $k['tingkat'] ?> <?= $k['kelas'] ?>
+
+                                        </td>
+                                        <td class='text-center'>
+                                            <a href="<?= base_url(); ?>/matapelajaran/manage/<?= $k['id']; ?>"
                                                 class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
+                                                <i class='fa fa-cog'></i>
                                             </a>
                                         </td>
                                     </tr>

@@ -6,7 +6,7 @@ if (peringatan) {
         text: peringatan,
         footer: ''
     });
-}
+};
 
 $('.hapus-pegawai').on('click', function (e) {
 
@@ -87,3 +87,4 @@ $('.hapus-siswa').on('click', function (e) {
             }
       })
 });
+

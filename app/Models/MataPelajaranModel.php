@@ -18,4 +18,18 @@ class MataPelajaranModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+
+    public function getDetailMapel($id)
+    {
+        //return $this->where(['id_kelompok_mapel_kelas' => $id])->get()->getResultArray();
+
+        return $this->db->table('mata_pelajaran')
+            ->join('kelas', 'kelas.id = mata_pelajaran.id_kelas')
+            ->join('kelompok_mata_pelajaran', 'kelompok_mata_pelajaran.id = mata_pelajaran.id_kelompok_mapel_kelas')
+            ->join('pegawai', 'pegawai.kode = mata_pelajaran.kode_guru')
+            ->where(['mata_pelajaran.id_kelompok_mapel_kelas' => $id, 'kelompok_mata_pelajaran.id' => $id])
+            ->select(['kelas.kelas', 'mata_pelajaran.nama_mapel', 'pegawai.nama'])
+            ->get()
+            ->getResultArray();
+    }
 }
