@@ -1,23 +1,6 @@
 <?php echo view('template/header'); ?>
 <?php echo view('template/sidebar'); ?>
 
-<script type="text/javascript">
-function detail_kelas(id) {
-    console.log(id);
-    $.ajax({
-        url: "<?= base_url('/Kelas/detail') ?>",
-        type: "GET",
-        data: {
-            id: id,
-        },
-        success: function(data) {
-            console.log(data);
-            $("#detail_kelas").html(data)
-        }
-    });
-}
-</script>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -38,29 +21,6 @@ function detail_kelas(id) {
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <?php if (!session()->get('is_walas')) : ?>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class='form-group'>
-                        <label>Detail Kelas</label>
-                        <select name='level' class='form-control'>
-                            <option value="">Pilih Kelas</option>
-                            <?php foreach ($kelas as $k) : ?>
-                            <option onclick="console.log(1)"><?= $k['kelas'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row" id="detail_kelas">
-
-            </div>
-            <?php endif; ?>
-
-
-
-            <?php if (session()->get('is_walas')) : ?>
             <div class='row'>
                 <div class='col-md-4'>
                     <div class='card card-info'>
@@ -140,7 +100,6 @@ function detail_kelas(id) {
                     </div>
                 </div>
             </div>
-            <?php endif; ?>
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

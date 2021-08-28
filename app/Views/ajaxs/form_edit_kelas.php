@@ -18,7 +18,7 @@
         <select name='update_wali_kelas' class='form-control' required>
             <option value=''>Pilih Guru</option>
             <?php foreach ($walas as $w) : ?>
-                <option value='<?= $w["kode"]; ?>' <?= ($w['kode'] == $kelas['kode_walas']) ? 'selected' : ''; ?>><?= $w['kode']; ?></option>
+                <option value='<?= $w["kode"]; ?>' <?= ($w['kode'] == $kelas['kode_walas']) ? 'selected' : ''; ?>><?= $w['nama']; ?></option>
             <?php endforeach; ?>
         </select>
     </div>

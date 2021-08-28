@@ -44,6 +44,7 @@ $routes->get('/matapelajaran', 'MataPelajaran::index', ['filter' => 'login']);
 
 $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
 $routes->post('/WaliKelas/KelasSiswa', 'AjaxController::kelas_siswa');
+$routes->get('/WaliKelas/deleteAnggota', 'AjaxController::delete_anggota');
 $routes->get('/Kelas/edit', 'AjaxController::edit_kelas');
 $routes->get('/Kelas/detail', 'AjaxController::detail_kelas');
 $routes->get('/Operator/detail', 'AjaxController::edit_pegawai');

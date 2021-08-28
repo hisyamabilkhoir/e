@@ -10,7 +10,7 @@ class SiswaModel extends Model
     protected $primaryKey = 'kode';
     protected $allowedFields = [
         'kode',
-        'nomor_induk', 'nisn', 'nik', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jk', 'agama', 'status_dalam_keluarga', 'anak_ke', 'alamat_siswa', 'nomor_handphone_peserta_didik', 'sekolah_asal', 'kelas_diterima', 'tgl_diterima', 'nama_ayah', 'nama_ibu', 'alamat_ortu', 'nomor_telpon_ortu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nama_wali', 'alamat_wali', 'nomor_telpon_wali', 'pekerjaan_wali'
+        'nomor_induk', 'nisn', 'nik', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jk', 'agama', 'status_dalam_keluarga', 'anak_ke', 'alamat_siswa', 'nomor_handphone_peserta_didik', 'sekolah_asal', 'kelas_diterima', 'tgl_diterima', 'nama_ayah', 'nama_ibu', 'alamat_ortu', 'nomor_telpon_ortu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nama_wali', 'alamat_wali', 'nomor_telpon_wali', 'pekerjaan_wali', 'status'
     ];
 
     public function getSiswa($kode = false)

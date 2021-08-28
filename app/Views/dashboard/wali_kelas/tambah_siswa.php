@@ -1,23 +1,5 @@
 <?php echo view('template/header'); ?>
 <?php echo view('template/sidebar'); ?>
-
-
-<div class="position-fixed toast-top-right right-0 p-3" style="z-index: 99; right: 0; top: 0;">
-    <div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-        <div class="toast-header">
-            <img src="..." class="rounded mr-2" alt="...">
-            <strong class="mr-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            Hello, world! This is a toast message.
-        </div>
-    </div>
-</div>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -59,6 +41,7 @@
                                                 <th>No</th>
                                                 <th>NIS</th>
                                                 <th>Nama</th>
+                                                <th>pilihan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -68,6 +51,9 @@
                                                     <td class='text-center'><?= $ii++; ?></td>
                                                     <td class='text-center'><?= $s['nomor_induk'] ?></td>
                                                     <td><?= $s['nama_lengkap']; ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('/WaliKelas/detailSiswa/' . $s['kode']) ?>" class="badge badge-info hapus-sekolah">Telusuri</a>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -81,7 +67,7 @@
                                     <h3 class='card-title'>Data Kelas <?= $walas[0]['kelas'] ?></h3>
                                 </div>
                                 <div class='card-body'>
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -93,12 +79,13 @@
                                         <tbody>
                                             <?php $i = 1; ?>
                                             <?php foreach ($semua_kelas as $sk) : ?>
-                                                <tr ondrop=" drop(event)" ondragover="allowDrop(event)">
+                                                <tr>
                                                     <td class='text-center'><?= $i++ ?></td>
                                                     <td class='text-center'><?= $sk['nomor_induk'] ?></td>
                                                     <td><?= $sk['nama_lengkap'] ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('/WaliKelas/hapus_siswa/') . $sk['id'] ?>" class="badge badge-danger hapus-sekolah">Hapus</a>
+                                                        <a href="<?= base_url('/WaliKelas/detailSiswa/' . $sk['kode']) ?>" class="badge badge-info hapus-sekolah">Telusuri</a>
+                                                        <a href="javascript:void(0)" data-id="<?= $sk['id'] ?>" data-kode="<?= $sk['kode'] ?>" class="delete badge badge-danger hapus-sekolah">Keluarkan</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -133,7 +120,7 @@
         const kode = ev.dataTransfer.getData("id");
         // let id = ev.target.id;
         console.log(kode);
-        console.log(<?= $idKelas; ?>);
+        // console.log(<?= $idKelas; ?>);
         $.ajax({
             url: "<?= base_url('/WaliKelas/KelasSiswa'); ?>",
             method: "POST",
@@ -143,6 +130,7 @@
             },
             success: function(data) {
                 // console.log(data);
+                location.reload();
                 $(function() {
                     var Toast = Swal.mixin({
                         toast: true,
@@ -152,22 +140,55 @@
                         showConfirmButton: false,
                         timer: 3000
                     });
-                    // $('.swalDefaultSuccess').click(function() {
                     Toast.fire({
                         icon: 'success',
                         title: data,
                     })
-                    // });
                 });
-                // toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-                // console.log(kode);
-                // $('#toast').toast('show');
-                // alert(data);
-                // location.reload()
             }
         });
-        // location.reload();
-        // window.location.reload();
-        // 	ev.target.appendChild(document.getElementById(data));
+    }
+
+    let del = document.querySelectorAll('.delete');
+    let delItems = [].slice.call(del);
+    delItems.forEach(function(item, idx) {
+        item.addEventListener('click', function(e) {
+            const idAnggota = this.getAttribute('data-id');
+            const kodeSiswa = this.getAttribute('data-kode');
+            $.ajax({
+                url: "<?= base_url('/WaliKelas/deleteAnggota'); ?>",
+                method: "GET",
+                data: {
+                    idAnggota: idAnggota,
+                    kodeSiswa: kodeSiswa,
+                },
+                success: function(data) {
+                    location.reload();
+                    $(function() {
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            iconColor: '#fff',
+                            background: '#33ff33',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        Toast.fire({
+                            icon: 'success',
+                            title: data,
+                        })
+                    });
+                }
+            });
+        });
+    });
+    // del.forEach(item, function(e) {
+    //     e.addEventListener("click", function(e) {
+    //         console.log(e);
+    //     });
+    // });
+
+    function cancel(idAnggota, kodeSiswa) {
+
     }
 </script>

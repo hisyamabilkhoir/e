@@ -84,24 +84,12 @@ class AjaxController extends BaseController
 
     public function kelas_siswa()
     {
-        // $year = Year::where("id",)->first();
-        // $tahunActive = $this->tahun_pelajaran->getActive('1');
-        return 'Data Berhasil di Tambahkan';
         $kode = $this->req->getVar('kode');
         $idKelas = $this->req->getVar('idKelas');
-        // return d($kode);
-        // return dd($idKelas);
-        // // return '<h1>asd</h1>';
-        $s = $this->siswa->update(
-            $kode,
-            [
-                'status' => 2,
-            ]
-        );
-        // $this->siswa->update([
-        //     'kode' => $kode,
-        //     'status' => 2,
-        // ]);
+        $s = $this->siswa->save([
+            'kode' => $kode,
+            'status' => '2',
+        ]);
         $a = $this->anggota_kelas->save([
             'kode_siswa' => $kode,
             'id_kelas' => $idKelas,
@@ -109,9 +97,23 @@ class AjaxController extends BaseController
         // return dd($a);
         if ($s && $a) {
             # code...
-            return 'Data Berhasil di Tambahkan';
+            return 'Siswa Berhasil di Tambahkan';
         }
-        // dd($data);
-        // return view("ajaxs/detail_kelas", $data);
+    }
+
+    public function delete_anggota()
+    {
+        $idAnggota = $this->req->getVar('idAnggota');
+        $kodeSiswa = $this->req->getVar('kodeSiswa');
+        $s = $this->siswa->save([
+            'kode' => $kodeSiswa,
+            'status' => '1',
+        ]);
+        $a = $this->anggota_kelas->delete($idAnggota);
+        // return dd($a);
+        if ($s && $a) {
+            # code...
+            return 'Siswa Berhasil di Keluarkan';
+        }
     }
 }

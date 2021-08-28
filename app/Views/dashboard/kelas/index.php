@@ -163,8 +163,11 @@
                                             <td class='text-center'><?= $k['kelas'] ?></td>
                                             <td><?= $k['nama'] ?></td>
                                             <td class='text-center'>
-                                                <a href="javascript:void(0)" title="Kelola Kelass" data-toggle="modal" data-target="#modal-form-edit-kelas" onclick="edit_kelas(<?php echo $k['id'] ?>)" class='btn btn-xs btn-success'>
-                                                    <i class='fa fa-edit'></i>
+                                                <a href="javascript:void(0)" title="Edit Kelas" data-toggle="modal" data-target="#modal-form-edit-kelas" onclick="edit_kelas(<?php echo $k['id'] ?>)" class='btn btn-xs btn-success'>
+                                                    <i class='fa fa-edit'></i> Edit Kelas
+                                                </a>
+                                                <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $k['id'] ?>" title="Kelola Kelas" class="btn btn-xs btn-success">
+                                                    <i class='fa fa-user-graduate'></i> Masukkan Siswa
                                                 </a>
                                             </td>
                                         </tr>
