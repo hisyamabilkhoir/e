@@ -16,16 +16,22 @@ class KelompokMataPelajaranModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['id' => $id])->first();
+        //return $this->where(['id_kelas' => $id])->get()->getResultArray();
+        return $this->db->table('kelompok_mata_pelajaran')
+            ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
+            ->where(['kelas.id' => $id, 'kelompok_mata_pelajaran.id_kelas' => $id])
+            ->select(['kelompok_mata_pelajaran.nama_kelompok', 'kelompok_mata_pelajaran.id_kelas'])
+            ->get()
+            ->getResultArray();
     }
 
 
-    public function getDataKelompokMapel($awal, $akhir)
+    public function getDataKelompokMapel($awal, $akhir, $id)
     {
         return $this->table('kelompok_mata_pelajaran')
             ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
             ->join('tahun_pelajaran', 'kelas.id_tahun_pelajaran = tahun_pelajaran.id')
-            ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir,])
+            ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir, 'kelompok_mata_pelajaran.id_kelas' => $id])
             ->select(['kelas.tingkat', 'kelas.kelas', 'kelompok_mata_pelajaran.id', 'kelompok_mata_pelajaran.nama_kelompok', 'kelompok_mata_pelajaran.id_kelas'])
             ->get()
             ->getResultArray();

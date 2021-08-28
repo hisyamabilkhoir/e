@@ -36,19 +36,21 @@ class MataPelajaran extends BaseController
         return view('dashboard/mata_pelajaran/index', $data);
     }
 
-    public function tambah_kelompok()
-    {
-        $tahunActive = $this->tahunPelajaran->getActive('1');
 
-        $data = [
-            'nama_kelompok' => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
-            "kelas" => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
-            "tahunActive" => $this->tahunPelajaran->getActive('1'),
-            'validation' => \Config\Services::validation(),
-        ];
+    //====Sementara diNonaktifkan==================//
+    // public function tambah_kelompok()
+    // {
+    //     $tahunActive = $this->tahunPelajaran->getActive('1');
 
-        return view('dashboard/mata_pelajaran/tambah_kelompok_mapel', $data);
-    }
+    //     $data = [
+    //         "kelas" => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+    //         "tahunActive" => $this->tahunPelajaran->getActive('1'),
+    //         'validation' => \Config\Services::validation(),
+    //     ];
+
+    //     return view('dashboard/mata_pelajaran/tambah_kelompok_mapel', $data);
+    // }
+
 
     public function proses_tambah_kelompok()
     {
@@ -61,7 +63,7 @@ class MataPelajaran extends BaseController
 
 
         if ($data_kelompok) {
-            $rule_kelas = 'required|is_unique[kelompok_mata_pelajaran.id_kelas]';
+            $rule_kelas = 'required|is_unique[kelompok_mata_pelajaran.nama_kelompok]';
         } else {
 
             $rule_kelas = 'required';
@@ -70,21 +72,15 @@ class MataPelajaran extends BaseController
 
         if (!$this->validate([
             'nama_kelompok'          => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Masukkan nama kelompok terlebih dahulu',
-                ],
-            ],
-            'id_kelas' => [
                 'rules' => $rule_kelas,
                 'errors' => [
-                    'required' => 'Lokasi Harus di isi',
-                    'is_unique' => 'Kelas yang anda pilih sudah terdaftar pada ' . $nama_kelompok,
+                    'required' => 'Masukkan nama kelompok terlebih dahulu',
+                    'is_unique' => 'Kelompok yang anda masukan sudah terdaftar !'
                 ],
             ],
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/matapelajaran/tambah_kelompok')->withInput()->with('validation', $validation);
+            return redirect()->to('/walikelas/tambahSiswa/' . $id_kelas . "/?active=custom-content-below-profile")->withInput()->with('validation', $validation);
         }
 
 
@@ -96,7 +92,7 @@ class MataPelajaran extends BaseController
 
         session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
 
-        return redirect()->to('/matapelajaran/tambah_kelompok');
+        return redirect()->to('/walikelas/tambahSiswa/' . $id_kelas . "/?active=custom-content-below-profile");
     }
 
     public function manage($id)

@@ -2,20 +2,20 @@
 <?php echo view('template/sidebar'); ?>
 
 <script type="text/javascript">
-    function edit_kelas(id) {
-        // console.log(id);
-        $.ajax({
-            url: "<?= base_url('/Kelas/edit') ?>",
-            type: "GET",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                // console.log(data);
-                $("#form-edit-kelas").html(data)
-            }
-        });
-    }
+function edit_kelas(id) {
+    // console.log(id);
+    $.ajax({
+        url: "<?= base_url('/Kelas/edit') ?>",
+        type: "GET",
+        data: {
+            id: id,
+        },
+        success: function(data) {
+            // console.log(data);
+            $("#form-edit-kelas").html(data)
+        }
+    });
+}
 </script>
 
 <div class="content-wrapper">
@@ -27,52 +27,53 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"> Data Kelas
                         <br>
-                        <small>Tahun Pelajaran <?= $tahunActive['tahun_awal'] . ' / ' . $tahunActive['tahun_akhir'] ?></small>
+                        <small>Tahun Pelajaran
+                            <?= $tahunActive['tahun_awal'] . ' / ' . $tahunActive['tahun_akhir'] ?></small>
                     </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
             <?php if ($validation->hasError('update_tingkat')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tingkat Error!</h4>
-                    <?php echo $validation->getError('update_tingkat'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Update data tingkat Error!</h4>
+                <?php echo $validation->getError('update_tingkat'); ?>
+            </div>
             <?php } ?>
 
             <?php if ($validation->hasError('update_kelas')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data kelas Error!</h4>
-                    <?php echo $validation->getError('update_kelas'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Update data kelas Error!</h4>
+                <?php echo $validation->getError('update_kelas'); ?>
+            </div>
             <?php } ?>
 
             <?php if ($validation->hasError('update_wali_kelas')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Update data wali kelas Error!</h4>
-                    <?php echo $validation->getError('update_wali_kelas'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Update data wali kelas Error!</h4>
+                <?php echo $validation->getError('update_wali_kelas'); ?>
+            </div>
             <?php } ?>
 
             <?php if ($validation->hasError('wali_kelas')) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-exclamation-triangle"></i>Tambah data wali kelas Error!</h4>
-                    <?php echo $validation->getError('wali_kelas'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-exclamation-triangle"></i>Tambah data wali kelas Error!</h4>
+                <?php echo $validation->getError('wali_kelas'); ?>
+            </div>
             <?php } ?>
 
             <?php
             if (!empty(session()->getFlashdata('success'))) { ?>
-                <div class="alert p-4 alert-success">
-                    <h4><i class="icon fas fa-check"></i> Selamat!</h4>
-                    <h6><?php echo session()->getFlashdata('success'); ?></h6>
-                </div>
+            <div class="alert p-4 alert-success">
+                <h4><i class="icon fas fa-check"></i> Selamat!</h4>
+                <h6><?php echo session()->getFlashdata('success'); ?></h6>
+            </div>
             <?php } ?>
 
             <?php if (!empty(session()->getFlashdata('danger'))) { ?>
-                <div class="alert alert-danger">
-                    <h4><i class="icon fas fa-remove"></i> Maaf!</h4>
-                    <?php echo session()->getFlashdata('danger'); ?>
-                </div>
+            <div class="alert alert-danger">
+                <h4><i class="icon fas fa-remove"></i> Maaf!</h4>
+                <?php echo session()->getFlashdata('danger'); ?>
+            </div>
             <?php } ?>
         </div><!-- /.container-fluid -->
     </div>
@@ -125,7 +126,7 @@
                                     <select name='wali_kelas' class='form-control' required>
                                         <option value=''>Pilih Guru</option>
                                         <?php foreach ($walas as $w) : ?>
-                                            <option value='<?= $w["kode"]; ?>'><?= $w['nama']; ?></option>
+                                        <option value='<?= $w["kode"]; ?>'><?= $w['nama']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -157,20 +158,24 @@
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($kelas as $k) : ?>
-                                        <tr>
-                                            <td class='text-center'><?= $i++; ?></td>
-                                            <td class='text-center'><?= $k['tingkat']; ?></td>
-                                            <td class='text-center'><?= $k['kelas'] ?></td>
-                                            <td><?= $k['nama'] ?></td>
-                                            <td class='text-center'>
-                                                <a href="javascript:void(0)" title="Edit Kelas" data-toggle="modal" data-target="#modal-form-edit-kelas" onclick="edit_kelas(<?php echo $k['id'] ?>)" class='btn btn-xs btn-success'>
-                                                    <i class='fa fa-edit'></i> Edit Kelas
-                                                </a>
-                                                <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $k['id'] ?>" title="Kelola Kelas" class="btn btn-xs btn-success">
-                                                    <i class='fa fa-user-graduate'></i> Masukkan Siswa
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td class='text-center'><?= $i++; ?></td>
+                                        <td class='text-center'><?= $k['tingkat']; ?></td>
+                                        <td class='text-center'><?= $k['kelas'] ?></td>
+                                        <td><?= $k['nama'] ?></td>
+                                        <td class='text-center'>
+                                            <a href="javascript:void(0)" title="Edit Kelas" data-toggle="modal"
+                                                data-target="#modal-form-edit-kelas"
+                                                onclick="edit_kelas(<?php echo $k['id'] ?>)"
+                                                class='btn btn-xs btn-success'>
+                                                <i class='fa fa-edit'></i> Edit Kelas
+                                            </a>
+                                            <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $k['id'] ?>"
+                                                title="Kelola Kelas" class="btn btn-xs btn-success">
+                                                <i class='fa fa-user-graduate'></i> Kelola
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

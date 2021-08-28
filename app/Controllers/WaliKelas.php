@@ -5,11 +5,17 @@ namespace App\Controllers;
 use App\Models\KelasModel;
 use App\Models\SiswaModel;
 use App\Models\TahunPelajaranModel;
+use App\Models\MataPelajaranModel;
+use App\Models\KelompokMataPelajaranModel;
+use App\Models\PegawaiModel;
+
 
 class WaliKelas extends BaseController
 {
 
     protected $kelas;
+    protected $kelompok_mapel;
+    protected $mapel;
     protected $siswa;
     protected $tahunPelajaran;
     public function __construct()
@@ -17,6 +23,9 @@ class WaliKelas extends BaseController
 
         $this->kelas = new KelasModel();
         $this->siswa = new SiswaModel();
+        $this->mapel = new MataPelajaranModel();
+        $this->kelompok_mapel = new KelompokMataPelajaranModel();
+        $this->guru = new PegawaiModel();
         $this->tahunPelajaran = new TahunPelajaranModel();
         $this->req = \Config\Services::request();
     }
@@ -48,11 +57,20 @@ class WaliKelas extends BaseController
     {
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
+            //'nama_kelompok' => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+            "kelas" => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $id),
             'siswa' => $this->siswa->getDataSiswa(1),
             'walas' => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
             'semua_kelas' => $this->kelas->getDetailKelas($id),
             'idKelas' => $id,
+            'nama_kelas' => $this->kelompok_mapel->getNamaKelas(),
+            "wali_kelas" => $this->guru->getWalas('4'),
+            'validation' => \Config\Services::validation(),
+            'kelompokById' => $this->kelompok_mapel->getKelompokById($id),
+            'mata_pelajaran' => $this->mapel->getDetailMapel($id),
+            "tahunActive" => $this->tahunPelajaran->getActive('1'),
         ];
+
         // dd($data);
         return view('dashboard/wali_kelas/tambah_siswa', $data);
     }

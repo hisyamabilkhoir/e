@@ -32,29 +32,15 @@
 
             <div class="card-body card">
                 <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-                    <?php
-                    if (isset($_GET['active'])) {
-                        if ($_GET['active'] === "custom-content-below-profile") {
-                            $header_tab1 = "";
-                            $header_tab2 = "active";
-                        } else {
-                            $header_tab1 = "active";
-                            $header_tab2 = "";
-                        }
-                    } else {
-                        $header_tab1 = "active";
-                        $header_tab2 = "";
-                    }
-                    ?>
                     <li class="nav-item">
-                        <a class="nav-link <?= $header_tab1 ?>" id="custom-content-below-home-tab" data-toggle="pill"
+                        <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
                             href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
-                            aria-selected="true">Siswa</a>
+                            aria-selected="true">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $header_tab2 ?>" id="custom-content-below-profile-tab" data-toggle="pill"
+                        <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
                             href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile"
-                            aria-selected="false">Kelompok Mapel</a>
+                            aria-selected="false">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill"
@@ -68,18 +54,7 @@
                     </li>
                 </ul>
                 <div class="tab-content mt-4" id="custom-content-below-tabContent">
-                    <?php
-                    if (isset($_GET['active'])) {
-                        if ($_GET['active'] === "custom-content-below-home") {
-                            $class_siswa_tab = "tab-pane fade active show";
-                        } else {
-                            $class_siswa_tab = "tab-pane fade";
-                        }
-                    } else {
-                        $class_siswa_tab = "tab-pane fade active show";
-                    }
-                    ?>
-                    <div class="<?= $class_siswa_tab ?>" id="custom-content-below-home" role="tabpanel"
+                    <div class="tab-pane fade active show" id="custom-content-below-home" role="tabpanel"
                         aria-labelledby="custom-content-below-home-tab">
                         <div class='row'>
                             <div class='col-md-12'>
@@ -249,100 +224,20 @@
                                 });
                             });
                         });
+
+                        function cancel(idAnggota, kodeSiswa) {
+
+                        }
                         </script>
                     </div>
-                    <?php
-                    if (isset($_GET['active'])) {
-                        if ($_GET['active'] === "custom-content-below-profile") {
-                            $class_kelompok_kelas_tab = "tab-pane fade active show";
-                        } else {
-                            $class_kelompok_kelas_tab = "tab-pane fade";
-                        }
-                    } else {
-                        $class_kelompok_kelas_tab = "tab-pane fade";
-                    }
-                    ?>
-                    <div class="<?= $class_kelompok_kelas_tab ?>" id="custom-content-below-profile" role="tabpanel"
+                    <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
                         aria-labelledby="custom-content-below-profile-tab">
-                        <div class="row">
-                            <div class='col-md-4'>
-                                <div class='card card-info'>
-                                    <div class='card-header'>
-                                        <h3 class='card-title'>Tambah Kelompok Mapel</h3>
-                                    </div>
-                                    <div class='card-body'>
-                                        <form method="post"
-                                            action="<?= base_url('/matapelajaran/proses_tambah_kelompok') ?>">
-                                            <?= csrf_field(); ?>
-
-                                            <input type="hidden" name="id_kelas" value="<?= $idKelas; ?>">
-
-                                            <div class='form-group'>
-                                                <label>Nama Kelompok</label>
-                                                <input required value="<?= old('nama_kelompok'); ?>" type='text'
-                                                    name='nama_kelompok' placeholder="Nama Kelompok"
-                                                    class='form-control <?= ($validation->hasError('nama_kelompok')) ? 'is-invalid' : ''; ?>'>
-                                                <div class="invalid-feedback">
-                                                    <?= $validation->getError('nama_kelompok'); ?>
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div class='form-group'>
-                                                <button type="submit" class='btn btn-block btn-info'>
-                                                    <i class='fa fa-plus'></i> Tambah Kelompok
-                                                </button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class='col-md-8'>
-                                <div class='card card-info'>
-                                    <div class='card-header'>
-                                        <h3 class='card-title'>Data Kelas</h3>
-                                    </div>
-                                    <div class='card-body'>
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nama Kelompok</th>
-                                                    <th>Kelas</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($kelas as $k) : ?>
-                                                <tr>
-                                                    <td class='text-center'><?= $i++; ?></td>
-                                                    <td class='text-center'><?= $k['nama_kelompok']; ?></td>
-                                                    <td class='text-center'>
-
-                                                        <?= $k['tingkat'] ?> <?= $k['kelas'] ?>
-
-                                                    </td>
-                                                    <td class='text-center'>
-                                                        <a href="<?= base_url(); ?>/matapelajaran/manage/<?= $k['id']; ?>"
-                                                            class='btn btn-xs btn-success'>
-                                                            <i class='fa fa-cog'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach; ?>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut
+                        ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+                        cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis
+                        posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere
+                        nec nunc. Nunc euismod pellentesque diam.
                     </div>
                     <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel"
                         aria-labelledby="custom-content-below-messages-tab">
