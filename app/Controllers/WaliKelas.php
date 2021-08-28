@@ -32,11 +32,12 @@ class WaliKelas extends BaseController
         return view('dashboard/wali_kelas/index', $data);
     }
 
-    public function detailSiswa()
+    public function detailSiswa($kode)
     {
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
-            'kelas' => $this->kelas->where(['id_tahun_pelajaran' => $tahunActive['id']])->findAll(),
+            // 'kelas' => $this->kelas->where(['id_tahun_pelajaran' => $tahunActive['id']])->findAll(),
+            'siswa' => $this->siswa->getSiswa($kode),
             'tahunActive' => $tahunActive,
         ];
         // dd($data['kelas']);
