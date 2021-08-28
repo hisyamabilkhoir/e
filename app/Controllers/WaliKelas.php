@@ -21,13 +21,28 @@ class WaliKelas extends BaseController
         $this->req = \Config\Services::request();
     }
 
-    public function index()
+    public function kelas()
     {
+        $walas = session()->get('is_walas');
+        // dd($walas);
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
+            'walas' => $this->kelas->getDataWalas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $walas),
+            'siswa' => $this->siswa->getDataSiswa(1),
             'kelas' => $this->kelas->where(['id_tahun_pelajaran' => $tahunActive['id']])->findAll(),
+            'semua_kelas' => $this->kelas->getDetailKelas($walas),
             'tahunActive' => $tahunActive,
+            'idKelas' => $walas,
         ];
+        // dd($data['walas']);
+        // $tahunActive = $this->tahunPelajaran->getActive('1');
+        // $data = [
+        //     'siswa' => $this->siswa->getDataSiswa(1),
+        //     'walas' => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+        //     'semua_kelas' => $this->kelas->getDetailKelas($id),
+        //     'idKelas' => $id,
+        // ];
+
         // dd($data['kelas']);
         return view('dashboard/wali_kelas/index', $data);
     }
@@ -36,7 +51,6 @@ class WaliKelas extends BaseController
     {
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
-            // 'kelas' => $this->kelas->where(['id_tahun_pelajaran' => $tahunActive['id']])->findAll(),
             'siswa' => $this->siswa->getSiswa($kode),
             'tahunActive' => $tahunActive,
         ];

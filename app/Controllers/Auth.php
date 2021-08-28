@@ -36,18 +36,18 @@ class Auth extends BaseController
         $user = $this->pegawai->where(['akun_email' => $email])->first();
 
 
-        $tahunActive = $this->tahun_pelajaran->getActive('1');
-        $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();
 
-
-        if ($walas == null) {
-            $walas = false;
-        } else {
-            $walas = $walas['id'];
-        }
         // dd($walas);
 
         if ($user) {
+            $tahunActive = $this->tahun_pelajaran->getActive('1');
+            $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();
+
+            if ($walas == null) {
+                $walas = false;
+            } else {
+                $walas = $walas['id'];
+            }
             //jika usernya aktif
             if ($user['status'] == 1) {
                 //cek password

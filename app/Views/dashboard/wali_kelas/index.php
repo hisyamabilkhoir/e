@@ -32,20 +32,19 @@
                                 <div class='form-group'>
                                     <fieldset disabled>
                                         <label for="walikelas" class="form-label">Wali Kelas</label>
-                                        <input type="text" id="walikelas" class="form-control"
-                                            placeholder="Muhammad Hafizh">
+                                        <input type="text" id="walikelas" class="form-control" placeholder="<?= $walas[0]['nama']; ?>">
                                     </fieldset>
                                 </div>
                                 <div class='form-group'>
                                     <fieldset disabled>
                                         <label>Kelas</label>
-                                        <input type='text' name='class' placeholder="XII RPL" placeholder="Kelas"
-                                            class='form-control' required>
+                                        <input type='text' name='class' placeholder="XII RPL" placeholder="<?= $walas[0]['kelas']; ?>" class='form-control'>
                                     </fieldset>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                 </div>
                 <div class='col-md-8'>
                     <div class='card card-info'>
@@ -60,40 +59,27 @@
                                         <th>NIS</th>
                                         <th>Nama</th>
                                         <th>L/P</th>
-                                        <th></th>
+                                        <th>Pilihan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class='text-center'>1</td>
-                                        <td class='text-center'>11</td>
-                                        <td>aa</td>
-                                        <td class='text-center'>
-                                            L
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" data-toggle="modal"
-                                                data-target="#modal-form-edit-student" onclick="edit_student(11)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class='text-center'>15</td>
-                                        <td class='text-center'>17181034</td>
-                                        <td>Fatimah Azzahra</td>
-                                        <td class='text-center'>
-                                            P
-                                        </td>
-                                        <td class='text-center'>
-                                            <a href="javascript:void(0)" data-toggle="modal"
-                                                data-target="#modal-form-edit-student" onclick="edit_student(17181034)"
-                                                class='btn btn-xs btn-success'>
-                                                <i class='fa fa-edit'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($semua_kelas as $sk) : ?>
+                                        <tr>
+                                            <td class='text-center'><?= $i++ ?></td>
+                                            <td class='text-center'><?= $sk['nomor_induk'] ?></td>
+                                            <td><?= $sk['nama_lengkap'] ?></td>
+                                            <td class='text-center'>
+                                                <?= $sk['jk'] ?>
+                                            </td>
+                                            <td class='text-center'>
+                                                <a href="" data-toggle="modal" data-target="#modal-form-edit-student" class='btn btn-xs btn-info'>
+                                                    Telusuri
+                                                </a>
+                                                <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $idKelas ?>" class="btn btn-success">Masukkan Siswa</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

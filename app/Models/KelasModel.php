@@ -24,7 +24,17 @@ class KelasModel extends Model
         return $this->table('kelas')
             ->join('pegawai', 'pegawai.kode = kelas.kode_walas')
             ->join('tahun_pelajaran', 'kelas.id_tahun_pelajaran = tahun_pelajaran.id')
-            ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir,])
+            ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir])
+            ->select(['pegawai.kode', 'kelas.id', 'kelas.tingkat', 'pegawai.nama', 'kelas.kelas'])
+            ->get()
+            ->getResultArray();
+    }
+    public function getDataWalas($awal, $akhir, $idKelas)
+    {
+        return $this->table('kelas')
+            ->join('pegawai', 'pegawai.kode = kelas.kode_walas')
+            ->join('tahun_pelajaran', 'kelas.id_tahun_pelajaran = tahun_pelajaran.id')
+            ->where(['tahun_pelajaran.tahun_awal' => $awal, 'tahun_pelajaran.tahun_akhir' => $akhir, 'kelas.id' => $idKelas])
             ->select(['pegawai.kode', 'kelas.id', 'kelas.tingkat', 'pegawai.nama', 'kelas.kelas'])
             ->get()
             ->getResultArray();

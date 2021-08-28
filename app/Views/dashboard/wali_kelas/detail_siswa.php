@@ -160,9 +160,7 @@
                                 </div>
 
 
-                                <a href="<?= base_url(); ?>/siswa" class="btn btn-danger float-left">Kembali</a>
-
-                                <button type="submit" class="btn btn-success float-right">Tambah</button>
+                                <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn btn-danger float-left">Kembali</a>
 
                             </form>
                         </div>
