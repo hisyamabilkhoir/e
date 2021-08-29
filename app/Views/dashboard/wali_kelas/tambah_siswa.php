@@ -14,10 +14,10 @@
 
             <?php
             if (!empty(session()->getFlashdata('msg'))) { ?>
-            <div class="alert p-4 alert-success">
-                <h4><i class="icon fas fa-check"></i> Selamat!</h4>
-                <h6><?php echo session()->getFlashdata('msg'); ?></h6>
-            </div>
+                <div class="alert p-4 alert-success">
+                    <h4><i class="icon fas fa-check"></i> Selamat!</h4>
+                    <h6><?php echo session()->getFlashdata('msg'); ?></h6>
+                </div>
             <?php } ?>
         </div><!-- /.container-fluid -->
     </div>
@@ -27,9 +27,6 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-
-
-
             <div class="card-body card">
                 <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
                     <?php
@@ -47,24 +44,16 @@
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link <?= $header_tab1 ?>" id="custom-content-below-home-tab" data-toggle="pill"
-                            href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
-                            aria-selected="true">Siswa</a>
+                        <a class="nav-link <?= $header_tab1 ?>" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Siswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $header_tab2 ?>" id="custom-content-below-profile-tab" data-toggle="pill"
-                            href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile"
-                            aria-selected="false">Kelompok Mapel</a>
+                        <a class="nav-link <?= $header_tab2 ?>" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Kelompok Mapel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill"
-                            href="#custom-content-below-messages" role="tab"
-                            aria-controls="custom-content-below-messages" aria-selected="false">Messages</a>
+                        <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill"
-                            href="#custom-content-below-settings" role="tab"
-                            aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
+                        <a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
                     </li>
                 </ul>
                 <div class="tab-content mt-4" id="custom-content-below-tabContent">
@@ -79,8 +68,7 @@
                         $class_siswa_tab = "tab-pane fade active show";
                     }
                     ?>
-                    <div class="<?= $class_siswa_tab ?>" id="custom-content-below-home" role="tabpanel"
-                        aria-labelledby="custom-content-below-home-tab">
+                    <div class="<?= $class_siswa_tab ?>" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class='card card-warning'>
@@ -112,16 +100,14 @@
                                                     <tbody>
                                                         <?php $ii = 1; ?>
                                                         <?php foreach ($siswa as $s) : ?>
-                                                        <tr draggable="true" ondragstart="drag(event)"
-                                                            id="<?php echo $s['kode'] ?>">
-                                                            <td class='text-center'><?= $ii++; ?></td>
-                                                            <td class='text-center'><?= $s['nomor_induk'] ?></td>
-                                                            <td><?= $s['nama_lengkap']; ?></td>
-                                                            <td>
-                                                                <a href="<?= base_url('/WaliKelas/detailSiswa/' . $s['kode']) ?>"
-                                                                    class="badge badge-info hapus-sekolah">Telusuri</a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr draggable="true" ondragstart="drag(event)" id="<?php echo $s['kode'] ?>">
+                                                                <td class='text-center'><?= $ii++; ?></td>
+                                                                <td class='text-center'><?= $s['nomor_induk'] ?></td>
+                                                                <td><?= $s['nama_lengkap']; ?></td>
+                                                                <td>
+                                                                    <a href="<?= base_url('/WaliKelas/detailSiswa/' . $s['kode']) ?>" class="badge badge-info hapus-sekolah">Telusuri</a>
+                                                                </td>
+                                                            </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
@@ -134,8 +120,7 @@
                                                 <h3 class='card-title'>Data Kelas <?= $walas[0]['kelas'] ?></h3>
                                             </div>
                                             <div class='card-body'>
-                                                <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1"
-                                                    class="table table-bordered table-striped">
+                                                <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1" class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -147,18 +132,15 @@
                                                     <tbody>
                                                         <?php $i = 1; ?>
                                                         <?php foreach ($semua_kelas as $sk) : ?>
-                                                        <tr>
-                                                            <td class='text-center'><?= $i++ ?></td>
-                                                            <td class='text-center'><?= $sk['nomor_induk'] ?></td>
-                                                            <td><?= $sk['nama_lengkap'] ?></td>
-                                                            <td>
-                                                                <a href="<?= base_url('/WaliKelas/detailSiswa/' . $sk['kode']) ?>"
-                                                                    class="badge badge-info hapus-sekolah">Telusuri</a>
-                                                                <a href="javascript:void(0)" data-id="<?= $sk['id'] ?>"
-                                                                    data-kode="<?= $sk['kode'] ?>"
-                                                                    class="delete badge badge-danger hapus-sekolah">Keluarkan</a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td class='text-center'><?= $i++ ?></td>
+                                                                <td class='text-center'><?= $sk['nomor_induk'] ?></td>
+                                                                <td><?= $sk['nama_lengkap'] ?></td>
+                                                                <td>
+                                                                    <a href="<?= base_url('/WaliKelas/detailSiswa/' . $sk['kode']) ?>" class="badge badge-info hapus-sekolah">Telusuri</a>
+                                                                    <a href="javascript:void(0)" data-id="<?= $sk['id'] ?>" data-kode="<?= $sk['kode'] ?>" class="delete badge badge-danger hapus-sekolah">Keluarkan</a>
+                                                                </td>
+                                                            </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
@@ -171,84 +153,87 @@
                         </div>
 
                         <script>
-                        function allowDrop(ev) {
-                            ev.preventDefault();
-                        }
+                            function allowDrop(ev) {
+                                // console.log(ev);
+                                ev.preventDefault();
+                            }
 
-                        function drag(ev) {
-                            // console.log(ev);
-                            // console.log(ev.target.id);
-                            ev.dataTransfer.setData("id", ev.target.id);
-                        }
+                            function drag(ev) {
+                                // console.log(ev);
+                                // console.log(ev.target.id);
+                                ev.dataTransfer.setData("id", ev.target.id);
+                            }
 
-                        function drop(ev) {
-                            ev.preventDefault();
-                            // console.log(ev);
-                            const kode = ev.dataTransfer.getData("id");
-                            // let id = ev.target.id;
-                            console.log(kode);
-                            // console.log(<?= $idKelas; ?>);
-                            $.ajax({
-                                url: "<?= base_url('/WaliKelas/KelasSiswa'); ?>",
-                                method: "POST",
-                                data: {
-                                    kode: kode,
-                                    idKelas: <?= $idKelas; ?>,
-                                },
-                                success: function(data) {
-                                    // console.log(data);
-                                    location.reload();
-                                    $(function() {
-                                        var Toast = Swal.mixin({
-                                            toast: true,
-                                            position: 'top-end',
-                                            iconColor: '#fff',
-                                            background: '#33ff33',
-                                            showConfirmButton: false,
-                                            timer: 3000
-                                        });
-                                        Toast.fire({
-                                            icon: 'success',
-                                            title: data,
-                                        })
+                            function drop(ev) {
+                                ev.preventDefault();
+                                // console.log(ev);
+                                const kode = ev.dataTransfer.getData("id");
+                                // let id = ev.target.id;
+                                // console.log(kode);
+                                if (kode) {
+                                    $.ajax({
+                                        url: "<?= base_url('/WaliKelas/KelasSiswa'); ?>",
+                                        method: "POST",
+                                        data: {
+                                            kode: kode,
+                                            idKelas: <?= $idKelas; ?>,
+                                        },
+                                        success: function(data) {
+                                            // console.log(data);
+                                            $(function() {
+                                                var Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-end',
+                                                    iconColor: '#fff',
+                                                    background: '#33ff33',
+                                                    showConfirmButton: false,
+                                                    timer: 3000
+                                                });
+                                                Toast.fire({
+                                                    icon: 'success',
+                                                    title: data,
+                                                })
+                                            });
+                                            location.reload();
+                                        }
                                     });
                                 }
-                            });
-                        }
 
-                        let del = document.querySelectorAll('.delete');
-                        let delItems = [].slice.call(del);
-                        delItems.forEach(function(item, idx) {
-                            item.addEventListener('click', function(e) {
-                                const idAnggota = this.getAttribute('data-id');
-                                const kodeSiswa = this.getAttribute('data-kode');
-                                $.ajax({
-                                    url: "<?= base_url('/WaliKelas/deleteAnggota'); ?>",
-                                    method: "GET",
-                                    data: {
-                                        idAnggota: idAnggota,
-                                        kodeSiswa: kodeSiswa,
-                                    },
-                                    success: function(data) {
-                                        location.reload();
-                                        $(function() {
-                                            var Toast = Swal.mixin({
-                                                toast: true,
-                                                position: 'top-end',
-                                                iconColor: '#fff',
-                                                background: '#33ff33',
-                                                showConfirmButton: false,
-                                                timer: 3000
+                            }
+
+                            let del = document.querySelectorAll('.delete');
+                            let delItems = [].slice.call(del);
+                            delItems.forEach(function(item, idx) {
+                                item.addEventListener('click', function(e) {
+                                    const idAnggota = this.getAttribute('data-id');
+                                    const kodeSiswa = this.getAttribute('data-kode');
+                                    $.ajax({
+                                        url: "<?= base_url('/WaliKelas/deleteAnggota'); ?>",
+                                        method: "GET",
+                                        data: {
+                                            idAnggota: idAnggota,
+                                            kodeSiswa: kodeSiswa,
+                                        },
+                                        success: function(data) {
+                                            $(function() {
+                                                var Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-end',
+                                                    iconColor: '#fff',
+                                                    background: '#33ff33',
+                                                    showConfirmButton: false,
+                                                    timer: 3000
+                                                });
+                                                Toast.fire({
+                                                    icon: 'success',
+                                                    title: data,
+                                                })
                                             });
-                                            Toast.fire({
-                                                icon: 'success',
-                                                title: data,
-                                            })
-                                        });
-                                    }
+                                            location.reload();
+                                        }
+                                    });
                                 });
                             });
-                        });
                         </script>
                     </div>
                     <?php
@@ -262,8 +247,7 @@
                         $class_kelompok_kelas_tab = "tab-pane fade";
                     }
                     ?>
-                    <div class="<?= $class_kelompok_kelas_tab ?>" id="custom-content-below-profile" role="tabpanel"
-                        aria-labelledby="custom-content-below-profile-tab">
+                    <div class="<?= $class_kelompok_kelas_tab ?>" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                         <div class="row">
                             <div class='col-md-4'>
                                 <div class='card card-info'>
@@ -271,17 +255,14 @@
                                         <h3 class='card-title'>Tambah Kelompok Mapel</h3>
                                     </div>
                                     <div class='card-body'>
-                                        <form method="post"
-                                            action="<?= base_url('/matapelajaran/proses_tambah_kelompok') ?>">
+                                        <form method="post" action="<?= base_url('/matapelajaran/proses_tambah_kelompok') ?>">
                                             <?= csrf_field(); ?>
 
                                             <input type="hidden" name="id_kelas" value="<?= $idKelas; ?>">
 
                                             <div class='form-group'>
                                                 <label>Nama Kelompok</label>
-                                                <input required value="<?= old('nama_kelompok'); ?>" type='text'
-                                                    name='nama_kelompok' placeholder="Nama Kelompok"
-                                                    class='form-control <?= ($validation->hasError('nama_kelompok')) ? 'is-invalid' : ''; ?>'>
+                                                <input required value="<?= old('nama_kelompok'); ?>" type='text' name='nama_kelompok' placeholder="Nama Kelompok" class='form-control <?= ($validation->hasError('nama_kelompok')) ? 'is-invalid' : ''; ?>'>
                                                 <div class="invalid-feedback">
                                                     <?= $validation->getError('nama_kelompok'); ?>
                                                 </div>
@@ -320,21 +301,20 @@
 
                                                 <?php $i = 1; ?>
                                                 <?php foreach ($kelas as $k) : ?>
-                                                <tr>
-                                                    <td class='text-center'><?= $i++; ?></td>
-                                                    <td class='text-center'><?= $k['nama_kelompok']; ?></td>
-                                                    <td class='text-center'>
+                                                    <tr>
+                                                        <td class='text-center'><?= $i++; ?></td>
+                                                        <td class='text-center'><?= $k['nama_kelompok']; ?></td>
+                                                        <td class='text-center'>
 
-                                                        <?= $k['tingkat'] ?> <?= $k['kelas'] ?>
+                                                            <?= $k['tingkat'] ?> <?= $k['kelas'] ?>
 
-                                                    </td>
-                                                    <td class='text-center'>
-                                                        <a href="<?= base_url(); ?>/matapelajaran/manage/<?= $k['id']; ?>"
-                                                            class='btn btn-xs btn-success'>
-                                                            <i class='fa fa-cog'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td class='text-center'>
+                                                            <a href="<?= base_url(); ?>/matapelajaran/manage/<?= $k['id']; ?>" class='btn btn-xs btn-success'>
+                                                                <i class='fa fa-cog'></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
 
                                             </tbody>
@@ -344,8 +324,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel"
-                        aria-labelledby="custom-content-below-messages-tab">
+                    <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                         Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat
                         augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit
                         sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut
@@ -355,8 +334,7 @@
                         gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt
                         eleifend ac ornare magna.
                     </div>
-                    <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel"
-                        aria-labelledby="custom-content-below-settings-tab">
+                    <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                         Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
                         turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis
                         vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum
