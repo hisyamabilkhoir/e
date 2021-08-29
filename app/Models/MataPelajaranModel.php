@@ -28,7 +28,7 @@ class MataPelajaranModel extends Model
             ->join('kelompok_mata_pelajaran', 'kelompok_mata_pelajaran.id = mata_pelajaran.id_kelompok_mapel_kelas')
             ->join('pegawai', 'pegawai.kode = mata_pelajaran.kode_guru')
             ->where(['mata_pelajaran.id_kelompok_mapel_kelas' => $id, 'kelompok_mata_pelajaran.id' => $id])
-            ->select(['kelas.kelas', 'mata_pelajaran.nama_mapel', 'pegawai.nama'])
+            ->select(['kelas.kelas', 'mata_pelajaran.nama_mapel', 'pegawai.nama', 'kelompok_mata_pelajaran.nama_kelompok'])
             ->get()
             ->getResultArray();
     }

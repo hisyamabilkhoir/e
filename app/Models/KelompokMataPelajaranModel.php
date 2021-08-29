@@ -20,7 +20,7 @@ class KelompokMataPelajaranModel extends Model
         return $this->db->table('kelompok_mata_pelajaran')
             ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
             ->where(['kelas.id' => $id, 'kelompok_mata_pelajaran.id_kelas' => $id])
-            ->select(['kelompok_mata_pelajaran.nama_kelompok', 'kelompok_mata_pelajaran.id_kelas'])
+            ->select(['kelompok_mata_pelajaran.nama_kelompok', 'kelompok_mata_pelajaran.id_kelas', 'kelas.kelas'])
             ->get()
             ->getResultArray();
     }
@@ -50,5 +50,10 @@ class KelompokMataPelajaranModel extends Model
             ->join('kelas', 'kelas.id = kelompok_mata_pelajaran.id_kelas')
             ->get()
             ->getResultArray();
+    }
+
+    public function getKelompokDetail($id)
+    {
+        return $this->where(['id' => $id])->first();
     }
 }

@@ -99,14 +99,17 @@ class MataPelajaran extends BaseController
     {
 
 
+
         $data = [
             'nama_kelas' => $this->kelompok_mapel->getNamaKelas(),
             "walas" => $this->guru->getWalas('4'),
             'validation' => \Config\Services::validation(),
-            'kelompokById' => $this->kelompok_mapel->getKelompokById($id),
+            'detail_kelompok' => $this->kelompok_mapel->getKelompokDetail($id),
             'mata_pelajaran' => $this->mapel->getDetailMapel($id),
             "tahunActive" => $this->tahunPelajaran->getActive('1'),
         ];
+
+
 
         return view('dashboard/mata_pelajaran/manage', $data);
     }
@@ -124,48 +127,6 @@ class MataPelajaran extends BaseController
                     'required' => 'Masukkan nama_mapel terlebih dahulu',
                 ],
             ],
-            'bobot_nilai_harian_pengetahuan'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
-            'bobot_nilai_akhir_pengetahuan'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
-            'bobot_nilai_harian_keterampilan'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
-            'bobot_nilai_akhir_keterampilan'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
-            'interval_pengetahuan'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
-            'interval_kompetensi'          => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Masukkan Nilai terlebih dahulu',
-                    'numeric' => 'harap isi dengan angka !'
-                ],
-            ],
 
         ])) {
             $validation = \Config\Services::validation();
@@ -179,14 +140,6 @@ class MataPelajaran extends BaseController
             'id_kelompok_mapel_kelas' => $id_kelompok_mapel_kelas,
             'nama_mapel' => $this->request->getVar('nama_mapel'),
             'kode_guru' => $this->request->getVar('kode_guru'),
-            'bobot_nilai_harian_pengetahuan' => $this->request->getVar('bobot_nilai_harian_pengetahuan'),
-            'bobot_nilai_akhir_pengetahuan' => $this->request->getVar('bobot_nilai_akhir_pengetahuan'),
-            'bobot_nilai_harian_keterampilan' => $this->request->getVar('bobot_nilai_harian_keterampilan'),
-            'bobot_nilai_akhir_keterampilan' => $this->request->getVar('bobot_nilai_akhir_keterampilan'),
-            'interval_pengetahuan' => $this->request->getVar('interval_pengetahuan'),
-            'interval_kompetensi' => $this->request->getVar('interval_kompetensi'),
-            'kalimat_kurang_pengetahuan' => $this->request->getVar('kalimat_kurang_pengetahuan'),
-            'kalimat_kurang_keterampilan' => $this->request->getVar('kalimat_kurang_keterampilan'),
         ]);
 
         session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
