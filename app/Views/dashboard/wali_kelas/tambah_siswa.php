@@ -87,7 +87,7 @@
                                                 <h3 class='card-title'>Data Siswa Belum Punya Kelas</h3>
                                             </div>
                                             <div class='card-body'>
-                                                <table id="example1" class="table table-bordered table-striped">
+                                                <table id="example1" class="my-3 table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -112,6 +112,7 @@
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
+                                                <?= $pager1->links('siswa', 'template_pagination') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +123,7 @@
                                             </div>
                                             <div class='card-body'>
                                                 <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1"
-                                                    class="table table-bordered table-striped">
+                                                    class="my-3 table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -149,6 +150,7 @@
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
+                                                <?= $pager2->links('anggota_kelas', 'template_pagination') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -340,8 +342,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
             </div>

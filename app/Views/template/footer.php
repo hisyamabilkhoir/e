@@ -1,6 +1,5 @@
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-gradient-danger text-gray-100">
@@ -19,22 +18,22 @@
 </div>
 </div>
 
-<script src="<?php echo base_url('AdminLTE/plugins'); ?>/jquery/jquery.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/plugins/jquery/jquery.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/plugins'); ?>/bootstrap/js/bootstrap.bundle.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/dist'); ?>/js/adminlte.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/dist/js/adminlte.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/plugins'); ?>/overlayScrollbars/js/jquery.overlayScrollbars.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/plugins'); ?>/datatables/jquery.dataTables.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/plugins/datatables/jquery.dataTables.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/plugins'); ?>/datatables-bs4/js/dataTables.bootstrap4.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
 </script>
 </script>
-<script src="<?php echo base_url('AdminLTE/jss'); ?>/sweetalert2.all.min.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/jss/sweetalert2.all.min.js">
 </script>
-<script src="<?php echo base_url('AdminLTE/jss'); ?>/myscript.js">
+<script src="<?= base_url('public/'); ?>/AdminLTE/jss/myscript.js">
 </script>
 
 </body>

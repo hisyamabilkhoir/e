@@ -33,14 +33,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 //$routes->get('/', 'Home::index');
 $routes->get('/', 'Auth::index');
+$routes->get('/auth', 'Auth::index');
 
-$routes->get('/home', 'Home::index', ['filter' => 'login']);
-$routes->get('/kelas', 'Kelas::index', ['filter' => 'login']);
-$routes->get('/operator', 'Operator::index', ['filter' => 'login']);
-$routes->get('/siswa', 'Siswa::index', ['filter' => 'login']);
-$routes->get('/tahun_pelajar', 'TahunPelajaran::index', ['filter' => 'login']);
-$routes->get('/wali_kelas', 'WaliKelas::index', ['filter' => 'login']);
-$routes->get('/matapelajaran', 'MataPelajaran::index', ['filter' => 'login']);
+if (session()->get('logged_in') == null) {
+	$routes->get('/(:any)', 'Home::index', ['filter' => 'login']);
+}
 
 $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
 $routes->post('/WaliKelas/KelasSiswa', 'AjaxController::kelas_siswa');

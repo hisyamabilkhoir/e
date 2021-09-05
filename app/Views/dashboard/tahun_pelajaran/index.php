@@ -163,7 +163,7 @@
                             <h3 class='card-title'>Data Tahun Pelajaran</h3>
                         </div>
                         <div class='card-body'>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped my-3">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -174,7 +174,7 @@
                                 </thead>
                                 <tbody>
                                 <tbody>
-                                    <?php $i = 1; ?>
+                                    <?php $i = 1 + ($dataPerPage * ($currentPage - 1)); ?>
                                     <?php foreach ($tahunPelajaran as $tp) : ?>
                                         <tr>
                                             <td class='text-center'><?= $i++ ?></td>
@@ -194,6 +194,7 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <?= $pager->links('tahun_pelajaran', 'template_pagination') ?>
                         </div>
                     </div>
                 </div>
