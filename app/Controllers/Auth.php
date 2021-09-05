@@ -68,12 +68,6 @@ class Auth extends BaseController
 
                     if ($data['level'] == 1) {
                         return redirect()->to(base_url('/home'));
-                    } else if ($data['level'] == 2) {
-                        return redirect()->to("/home");
-                    } else if ($data['level'] == 3) {
-                        return redirect()->to("/home");
-                    } else if ($data['level'] == 4) {
-                        return redirect()->to("/home");
                     }
                 } else {
                     session()->setFlashdata('msg', 'Password salah !');
