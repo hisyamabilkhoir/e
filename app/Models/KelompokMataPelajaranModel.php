@@ -56,4 +56,14 @@ class KelompokMataPelajaranModel extends Model
     {
         return $this->where(['id' => $id])->first();
     }
+
+    public function getDataPrint($id_kelas)
+    {
+        return $this->table('kelompok_mata_pelajaran')
+            ->join('mata_pelajaran', 'mata_pelajaran.id_kelompok_mapel_kelas = kelompok_mata_pelajaran.id')
+            ->where(['mata_pelajaran.id_kelas' => $id_kelas,])
+            ->select(['kelompok_mata_pelajaran.nama_kelompok', 'mata_pelajaran.nama_mapel'])
+            ->get()
+            ->getResultArray();
+    }
 }

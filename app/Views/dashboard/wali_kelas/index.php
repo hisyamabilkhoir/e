@@ -32,13 +32,15 @@
                                 <div class='form-group'>
                                     <fieldset disabled>
                                         <label for="walikelas" class="form-label">Wali Kelas</label>
-                                        <input type="text" id="walikelas" class="form-control" placeholder="<?= $walas[0]['nama']; ?>">
+                                        <input type="text" id="walikelas" class="form-control"
+                                            placeholder="<?= $walas[0]['nama']; ?>">
                                     </fieldset>
                                 </div>
                                 <div class='form-group'>
                                     <fieldset disabled>
                                         <label>Kelas</label>
-                                        <input type='text' name='class' placeholder="XII RPL" placeholder="<?= $walas[0]['kelas']; ?>" class='form-control'>
+                                        <input type='text' name='class' placeholder="XII RPL"
+                                            placeholder="<?= $walas[0]['kelas']; ?>" class='form-control'>
                                     </fieldset>
                                 </div>
                             </form>
@@ -65,20 +67,22 @@
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($semua_kelas as $sk) : ?>
-                                        <tr>
-                                            <td class='text-center'><?= $i++ ?></td>
-                                            <td class='text-center'><?= $sk['nomor_induk'] ?></td>
-                                            <td><?= $sk['nama_lengkap'] ?></td>
-                                            <td class='text-center'>
-                                                <?= $sk['jk'] ?>
-                                            </td>
-                                            <td class='text-center'>
-                                                <a href="" data-toggle="modal" data-target="#modal-form-edit-student" class='btn btn-xs btn-info'>
-                                                    Telusuri
-                                                </a>
-                                                <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $idKelas ?>" class="btn btn-success">Masukkan Siswa</a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td class='text-center'><?= $i++ ?></td>
+                                        <td class='text-center'><?= $sk['nomor_induk'] ?></td>
+                                        <td><?= $sk['nama_lengkap'] ?></td>
+                                        <td class='text-center'>
+                                            <?= $sk['jk'] ?>
+                                        </td>
+                                        <td class='text-center'>
+                                            <a href="" data-toggle="modal" data-target="#modal-form-edit-student"
+                                                class='btn btn-xs btn-info'>
+                                                Telusuri
+                                            </a>
+                                            <a href="<?= base_url('/WaliKelas/tambahSiswa') . '/' . $idKelas ?>"
+                                                class="btn btn-success">Masukkan Siswa</a>
+                                        </td>
+                                    </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

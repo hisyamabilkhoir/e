@@ -128,6 +128,19 @@ function edit_pegawai(kode) {
                     <div class='card card-info'>
                         <div class='card-header'>
                             <h3 class='card-title'>Data Pegawai</h3>
+                            <div class="card-tools">
+                                <form action="" method="POST">
+                                    <div class="input-group input-group-sm mt-1" style="width: 190px;">
+                                        <input type="text" name="keyword" class="form-control float-right"
+                                            placeholder="Cari Pegawai ....">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-info">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class='card-body'>
                             <table id="example1" class="table table-bordered table-striped">
@@ -141,7 +154,7 @@ function edit_pegawai(kode) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; ?>
+                                    <?php $i = 1 + (7 * ($currentPage - 1)); ?>
                                     <?php foreach ($pegawai as $p) : ?>
 
                                     <tr>
@@ -184,6 +197,8 @@ function edit_pegawai(kode) {
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <br>
+                            <?= $pager->links('pegawai', 'pegawai_pagination'); ?>
                         </div>
                     </div>
                 </div>

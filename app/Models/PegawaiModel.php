@@ -22,4 +22,10 @@ class PegawaiModel extends Model
     {
         return $this->where(['level' => $level])->findAll();
     }
+
+    public function search($keyword)
+    {
+        return $this->table('pegawai')->like('nama', $keyword)
+            ->orLike('akun_email', $keyword);
+    }
 }

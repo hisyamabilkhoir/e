@@ -63,10 +63,9 @@
                         <div class='card-header'>
                             <h3 class='card-title'>Data Siswa</h3>
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
-
+                                <div class="input-group input-group-sm" style="width: 190px;">
+                                    <input type="text" name="keyword" class="form-control float-right"
+                                        placeholder="Cari Siswa ....">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-info">
                                             <i class="fas fa-search"></i>

@@ -146,4 +146,15 @@ class MataPelajaran extends BaseController
 
         return redirect()->to('/matapelajaran/manage/' . $id_kelompok_mapel_kelas);
     }
+
+    public function print($id_kelas)
+    {
+        $tahunActive = $this->tahunPelajaran->getActive('1');
+        $data = [
+            "kelas" => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $id_kelas),
+            'getDataPrint' => $this->kelompok_mapel->getDataPrint($id_kelas),
+        ];
+
+        return view('dashboard/wali_kelas/print', $data);
+    }
 }

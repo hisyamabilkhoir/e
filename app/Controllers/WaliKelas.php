@@ -63,7 +63,6 @@ class WaliKelas extends BaseController
             'siswa' => $this->siswa->getSiswa($kode),
             'tahunActive' => $tahunActive,
         ];
-        // dd($data['kelas']);
         return view('dashboard/wali_kelas/detail_siswa', $data);
     }
 
@@ -85,7 +84,6 @@ class WaliKelas extends BaseController
             "tahunActive" => $this->tahunPelajaran->getActive('1'),
         ];
 
-        // dd($data);
         return view('dashboard/wali_kelas/tambah_siswa', $data);
     }
 }

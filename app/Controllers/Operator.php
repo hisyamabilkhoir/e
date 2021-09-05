@@ -15,10 +15,21 @@ class Operator extends BaseController
 
     public function index()
     {
+        $currentPage = $this->request->getVar('page_pegawai') ? $this->request->getVar('page_pegawai') : 1;
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $pegawai = $this->pegawai->search($keyword);
+        } else {
+            $pegawai = $this->pegawai;
+        }
 
         $data = [
             'validation' => \Config\Services::validation(),
-            "pegawai" => $this->pegawai->getPegawai(),
+            //"pegawai" => $this->pegawai->getPegawai(),
+            'pegawai' => $pegawai->paginate(7, 'pegawai'),
+            'pager' => $this->pegawai->pager,
+            'currentPage' => $currentPage
         ];
 
         return view('dashboard/operator/index', $data);
