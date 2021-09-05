@@ -18,8 +18,14 @@ class TahunPelajaran extends BaseController
 
     public function index()
     {
+        $currentPage = $this->request->getGet('page_tahun_pelajaran') ? $this->request->getGet('page_tahun_pelajaran') : 1;
+        $dataPerPage = 6;
         $data = [
             "tahunPelajaran" => $this->tahun_pelajaran->getTahunPelajaran(),
+            'tahunPelajaran' => $this->tahun_pelajaran->paginate($dataPerPage, 'tahun_pelajaran'),
+            'dataPerPage' => $dataPerPage,
+            'currentPage' => $currentPage,
+            'pager' => $this->tahun_pelajaran->pager,
             "validation" => \Config\Services::validation(),
         ];
         return view('dashboard/tahun_pelajaran/index', $data);

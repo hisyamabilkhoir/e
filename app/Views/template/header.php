@@ -6,12 +6,12 @@
     <meta http-equiv="x-ua-compatible">
     <title>E-Raport</title>
     <!-- <style type="text/css" id="debugbar_dynamic_style"></style> -->
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/dist'); ?>/css/adminlte.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/overlayScrollbars/css/OverlayScrollbars.css">
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('AdminLTE/plugins'); ?>/datatables-bs4/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/dist'); ?>/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/overlayScrollbars/css/OverlayScrollbars.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/datatables-bs4/css/bootstrap.css">
     <link href="<?= base_url('img/LogoAl-irsyad.png'); ?>" rel='icon' type='icon/png' />
     <style>
         .wrapper {
@@ -38,7 +38,7 @@
             <ul class="navbar-nav ml-auto">
                 <li>
                     <div class="image mr-2">
-                        <img src="<?= base_url('img/profile.png'); ?>" class="img-circle" width="30" height="30" alt="User Image">
+                        <img src="<?= base_url('public/img/profile.png'); ?>" class="img-circle" width="30" height="30" alt="User Image">
                         <a> - Administrtor |</a>
                     </div>
                 </li>

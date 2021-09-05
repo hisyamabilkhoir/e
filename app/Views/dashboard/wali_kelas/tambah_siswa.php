@@ -82,7 +82,7 @@
                                                 <h3 class='card-title'>Data Siswa Belum Punya Kelas</h3>
                                             </div>
                                             <div class='card-body'>
-                                                <table id="example1" class="table table-bordered table-striped">
+                                                <table id="example1" class="my-3 table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -105,6 +105,7 @@
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
+                                                <?= $pager1->links('siswa', 'template_pagination') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +115,7 @@
                                                 <h3 class='card-title'>Data Kelas <?= $walas[0]['kelas'] ?></h3>
                                             </div>
                                             <div class='card-body'>
-                                                <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1" class="table table-bordered table-striped">
+                                                <table ondrop=" drop(event)" ondragover="allowDrop(event)" id="example1" class="my-3 table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -138,6 +139,7 @@
                                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
+                                                <?= $pager2->links('anggota_kelas', 'template_pagination') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -318,36 +320,15 @@
                             </div>
                         </div>
                     </div>
-                    <<<<<<< HEAD <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-                        Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat
-                        augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit
-                        sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut
-                        velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
-                        tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
-                        sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum
-                        gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt
-                        eleifend ac ornare magna.
                 </div>
-                <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
-                    Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                    turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis
-                    vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum
-                    pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet
-                    urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse
-                    platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-                </div>
-                =======
 
-                >>>>>>> bf72daa06146490b048cfbc4e0fdcfde0acea0aa
             </div>
 
         </div>
+        <!-- /.card -->
+
 
     </div>
-    <!-- /.card -->
-
-
-</div>
 </div>
 </div>
 

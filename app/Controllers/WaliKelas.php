@@ -33,7 +33,6 @@ class WaliKelas extends BaseController
     public function kelas()
     {
         $walas = session()->get('is_walas');
-        // dd($walas);
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
             'walas' => $this->kelas->getDataWalas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $walas),
@@ -43,16 +42,7 @@ class WaliKelas extends BaseController
             'tahunActive' => $tahunActive,
             'idKelas' => $walas,
         ];
-        // dd($data['walas']);
-        // $tahunActive = $this->tahunPelajaran->getActive('1');
-        // $data = [
-        //     'siswa' => $this->siswa->getDataSiswa(1),
-        //     'walas' => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
-        //     'semua_kelas' => $this->kelas->getDetailKelas($id),
-        //     'idKelas' => $id,
-        // ];
-
-        // dd($data['kelas']);
+        // dd($data);
         return view('dashboard/wali_kelas/index', $data);
     }
 
@@ -69,9 +59,24 @@ class WaliKelas extends BaseController
 
     public function tambahSiswa($id)
     {
+        // $currentPage = $this->request->getGet('page_tahun_pelajaran') ? $this->request->getGet('page_tahun_pelajaran') : 1;
+        $dataPerPage1 = 1;
+        $dataPerPage2 = 1;
+        // $data = [
+        //     "tahunPelajaran" => $this->tahun_pelajaran->getTahunPelajaran(),
+        //     'currentPage' => $currentPage,
+        //     'pager' => $this->tahun_pelajaran->pager,
+        //     "validation" => \Config\Services::validation(),
+        // ];
+
         $tahunActive = $this->tahunPelajaran->getActive('1');
         $data = [
-            //'nama_kelompok' => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
+            'dataPerPage1' => $dataPerPage1,
+            'dataPerPage2' => $dataPerPage2,
+            'siswa' => $this->siswa->paginate($dataPerPage1, 'siswa'),
+            'semua_kelas' => $this->kelas->paginate($dataPerPage2, 'anggota_kelas'),
+            'pager1' => $this->siswa->pager,
+            'pager2' => $this->kelas->pager,
             "kelas" => $this->kelompok_mapel->getDataKelompokMapel($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $id),
             'siswa' => $this->siswa->getDataSiswa(1),
             'walas' => $this->kelas->getDataKelas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir']),
