@@ -86,7 +86,7 @@
                         <a class="nav-link <?= $header_tab1 ?>" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Siswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $header_tab2 ?>" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Kelompok Mapel</a>
+                        <a class="nav-link <?= $header_tab2 ?>" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Mata Pelajaran</a>
                     </li>
                 </ul>
                 <div class="tab-content mt-4" id="custom-content-below-tabContent">

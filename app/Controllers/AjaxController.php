@@ -66,7 +66,7 @@ class AjaxController extends BaseController
         $kelas = $this->req->getVar('id');
         // dd($kelas);
         $data = [
-            "walas" => $this->pegawai->getWalas('4'),
+            "walas" => $this->pegawai->getWalas('2'),
             "kelas" => $this->kelas->getKelas($kelas),
         ];
 
@@ -132,10 +132,9 @@ class AjaxController extends BaseController
 
         // dd($kelas);
         $data = [
-            "walas" => $this->pegawai->getWalas('4'),
             "idKelompokMapel" => $idKelompokMapel,
             "idKelas" => $idKelas,
-            "walas" => $this->pegawai->getWalas('4'),
+            "walas" => $this->pegawai->getWalas('2'),
             "tahunActive" => $tahunActive,
         ];
 
@@ -149,7 +148,7 @@ class AjaxController extends BaseController
         $idKelompok = $this->req->getVar('idKelompok');
         $idKelas = $this->req->getVar('idKelas');
         $data = [
-            "walas" => $this->pegawai->getWalas('4'),
+            "walas" => $this->pegawai->getWalas('2'),
             "idKelas" => $idKelas,
             "idKelompok" => $idKelompok,
             "tahunActive" => $tahunActive,

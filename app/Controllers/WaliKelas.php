@@ -74,7 +74,7 @@ class WaliKelas extends BaseController
             'semua_kelas' => $this->kelas->getDetailKelas($id),
             'idKelas' => $id,
             'nama_kelas' => $this->kelompok_mapel->getNamaKelas(),
-            "wali_kelas" => $this->guru->getWalas('4'),
+            "wali_kelas" => $this->guru->getWalas('2'),
             'validation' => \Config\Services::validation(),
             'kelompokById' => $this->kelompok_mapel->getKelompokById($id),
             'mata_pelajaran' => $this->mapel->getDetailMapel($id),

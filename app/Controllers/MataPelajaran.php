@@ -99,7 +99,7 @@ class MataPelajaran extends BaseController
     {
         $data = [
             'nama_kelas' => $this->kelompok_mapel->getNamaKelas(),
-            "walas" => $this->guru->getWalas('4'),
+            "walas" => $this->guru->getWalas('2'),
             'validation' => \Config\Services::validation(),
             'detail_kelompok' => $this->kelompok_mapel->getKelompokDetail($id),
             'mata_pelajaran' => $this->mapel->getDetailMapel($id),

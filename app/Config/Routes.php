@@ -32,11 +32,17 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 //$routes->get('/', 'Home::index');
+if (session()->get('logged_in')) {
+	$routes->get('/auth', 'Auth::index', ['filter' => 'logout']);
+}
 $routes->get('/', 'Auth::index');
 $routes->get('/auth', 'Auth::index');
 
 if (session()->get('logged_in') == null) {
 	$routes->get('/(:any)', 'Home::index', ['filter' => 'login']);
+}
+if ($routes->get('/auth', 'Auth::index') && session()->get('logged_in')) {
+	$routes->get('/auth', 'Auth::index', ['filter' => 'logout']);
 }
 
 $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
