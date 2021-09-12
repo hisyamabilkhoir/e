@@ -7,6 +7,8 @@ use App\Models\KelasModel;
 use App\Models\TahunPelajaranModel;
 use App\Models\PegawaiModel;
 use App\Models\SiswaModel;
+use App\Models\MataPelajaranModel;
+use App\Models\KelompokMataPelajaranModel;
 
 class AjaxController extends BaseController
 {
@@ -15,6 +17,8 @@ class AjaxController extends BaseController
     protected $kelas;
     protected $siswa;
     protected $anggota_kelas;
+    protected $mapel;
+    protected $KelompokMapel;
 
     public function __construct()
     {
@@ -23,6 +27,8 @@ class AjaxController extends BaseController
         $this->kelas = new KelasModel();
         $this->siswa = new SiswaModel();
         $this->anggota_kelas = new AnggotaKelasModel();
+        $this->mapel = new MataPelajaranModel();
+        $this->KelompokMapel = new KelompokMataPelajaranModel();
         $this->req = \Config\Services::request();
     }
 
@@ -115,5 +121,61 @@ class AjaxController extends BaseController
             # code...
             return 'Siswa Berhasil di Keluarkan';
         }
+    }
+
+    public function tambah_mapel()
+    {
+        // $year = Year::where("id",)->first();
+        $tahunActive = $this->tahun_pelajaran->getActive('1');
+        $idKelompokMapel = $this->req->getVar('id');
+        $idKelas = $this->req->getVar('idKelas');
+
+        // dd($kelas);
+        $data = [
+            "walas" => $this->pegawai->getWalas('4'),
+            "idKelompokMapel" => $idKelompokMapel,
+            "idKelas" => $idKelas,
+            "walas" => $this->pegawai->getWalas('4'),
+            "tahunActive" => $tahunActive,
+        ];
+
+        return view("ajaxs/tambah_mata_pelajaran", $data);
+    }
+
+    public function edit_mapel()
+    {
+        $tahunActive = $this->tahun_pelajaran->getActive('1');
+        $idMapel = $this->req->getVar('id');
+        $idKelompok = $this->req->getVar('idKelompok');
+        $idKelas = $this->req->getVar('idKelas');
+        $data = [
+            "walas" => $this->pegawai->getWalas('4'),
+            "idKelas" => $idKelas,
+            "idKelompok" => $idKelompok,
+            "tahunActive" => $tahunActive,
+            "mapel" => $this->mapel->getMatapelajaran($idMapel),
+            "idKelas" => $idKelas,
+        ];
+
+        return view("ajaxs/form_edit_mapel", $data);
+    }
+
+    public function edit_kelompok_mapel()
+    {
+        $tahunActive = $this->tahun_pelajaran->getActive('1');
+        $idKelompok = $this->req->getVar('id');
+        $idKelas = $this->req->getVar('idKelas');
+        $kelompokMapel = $this->KelompokMapel->getKelompokMapel($idKelompok);
+        // d($idKelompok);
+        // dd($kelompokMapel);
+        // dd($idKelas);
+        // dd($kelompokMapel);
+        $data = [
+            "idKelas" => $idKelas,
+            "idKelompok" => $idKelompok,
+            "tahunActive" => $tahunActive,
+            "kelompokMapel" => $kelompokMapel,
+        ];
+        return view("ajaxs/form_edit_kelompok_mapel", $data);
     }
 }

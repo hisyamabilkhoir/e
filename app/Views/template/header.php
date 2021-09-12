@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/overlayScrollbars/css/OverlayScrollbars.css">
     <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('public/AdminLTE/plugins'); ?>/datatables-bs4/css/bootstrap.css">
-    <link href="<?= base_url('img/LogoAl-irsyad.png'); ?>" rel='icon' type='icon/png' />
     <style>
         .wrapper {
             /*min-height: 100%;
