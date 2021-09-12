@@ -37,6 +37,15 @@ class Operator extends BaseController
 
     public function tambah()
     {
+        $data = [
+            'validation' => \Config\Services::validation(),
+        ];
+
+        return view('dashboard/operator/tambah', $data);
+    }
+
+    public function proses_tambah()
+    {
 
         if (!$this->validate([
             'nama'          => [
@@ -47,6 +56,31 @@ class Operator extends BaseController
                     'max_length' => 'Masukkan jangan lebih dari 20 huruf',
                 ],
             ],
+            'nip'          => [
+                'rules' => 'required|numeric|is_unique[pegawai.nip]',
+                'errors' => [
+                    'required' => 'Masukkan nip terlebih dahulu',
+                    'numeric' => 'Hanya boleh diisi angka !',
+                    'is_unique' => 'nip sudah ada',
+                ],
+            ],
+            'nik'          => [
+                'rules' => 'required|numeric|is_unique[pegawai.nik]',
+                'errors' => [
+                    'required' => 'Masukkan nik terlebih dahulu',
+                    'numeric' => 'Hanya boleh diisi angka !',
+                    'is_unique' => 'nik sudah ada',
+                ],
+            ],
+            'no_hp'         => [
+                'rules' => 'required|max_length[16]|numeric|is_unique[pegawai.no_hp]',
+                'errors' => [
+                    'required' => 'Masukkan nama terlebih dahulu',
+                    'max_length' => 'Masukkan jangan lebih dari 16 angka',
+                    'numeric' => 'Harus di isi dengan angka !',
+                    'is_unique' => 'Nomor handphone sudah terdaftar',
+                ]
+            ],
             'email'         => [
                 'rules' => 'required|max_length[50]|valid_email|is_unique[pegawai.akun_email]',
                 'errors' => [
@@ -55,6 +89,12 @@ class Operator extends BaseController
                     'valid_email' => 'Email Tidak valid',
                     'is_unique' => 'Email sudah ada',
                 ]
+            ],
+            'alamat'          => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Masukkan alamat terlebih dahulu',
+                ],
             ],
             'password'      => [
                 'rules' => 'required|max_length[200]',
@@ -71,7 +111,7 @@ class Operator extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/operator')->withInput()->with('validation', $validation);
+            return redirect()->to('/operator/tambah')->withInput()->with('validation', $validation);
         }
 
         helper('text');
@@ -81,6 +121,11 @@ class Operator extends BaseController
         $this->pegawai->insert([
             'kode' => $code,
             'nama' => $this->request->getVar('nama'),
+            'nip' => $this->request->getVar('nip'),
+            'nik' => $this->request->getVar('nik'),
+            'no_hp' => $this->request->getVar('no_hp'),
+            'jk' => $this->request->getVar('jk'),
+            'alamat' => $this->request->getVar('alamat'),
             'akun_email' => $this->request->getVar('email'),
             'akun_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'status' => 1,
@@ -118,6 +163,8 @@ class Operator extends BaseController
 
     public function ubah($kode)
     {
+
+
         $data = [
             'validation' => \Config\Services::validation(),
             "pegawai" => $this->pegawai->getPegawai($kode),
@@ -152,6 +199,12 @@ class Operator extends BaseController
             $rule_nik = 'required|numeric|is_unique[pegawai.nik]';
         }
 
+        if ($data_pegawai['no_hp'] == $this->request->getVar('no_hp')) {
+            $rule_no_hp = 'required';
+        } else {
+            $rule_no_hp = 'required|numeric|is_unique[pegawai.no_hp]';
+        }
+
 
 
 
@@ -169,7 +222,7 @@ class Operator extends BaseController
                 'errors' => [
                     'required' => 'Masukkan nip terlebih dahulu',
                     'numeric' => 'Hanya boleh diisi angka !',
-                    'is_unique' => 'nip sudah ada',
+                    'is_unique' => 'nip sudah terdaftar',
                 ],
             ],
             'nik'          => [
@@ -177,7 +230,15 @@ class Operator extends BaseController
                 'errors' => [
                     'required' => 'Masukkan nik terlebih dahulu',
                     'numeric' => 'Hanya boleh diisi angka !',
-                    'is_unique' => 'nik sudah ada',
+                    'is_unique' => 'nik sudah terdaftar',
+                ],
+            ],
+            'no_hp'          => [
+                'rules' => $rule_no_hp,
+                'errors' => [
+                    'required' => 'Masukkan Nomor handphone terlebih dahulu',
+                    'numeric' => 'Hanya boleh diisi angka !',
+                    'is_unique' => 'Nomor Handphone sudah terdaftar',
                 ],
             ],
             'email'         => [
@@ -186,8 +247,14 @@ class Operator extends BaseController
                     'required' => 'Masukkan email terlebih dahulu',
                     'max_length' => 'Masukkan jangan lebih dari 50 huruf',
                     'valid_email' => 'Email Tidak valid',
-                    'is_unique' => 'Email sudah ada',
+                    'is_unique' => 'Email sudah terdaftar',
                 ]
+            ],
+            'alamat'          => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Masukkan alamat terlebih dahulu',
+                ],
             ],
             'password'      => [
                 'rules' => 'required|max_length[200]',
@@ -207,17 +274,37 @@ class Operator extends BaseController
             return redirect()->to(base_url('/operator/ubah/' . $kode))->withInput()->with('validation', $validation);
         }
 
+        $pegawai = $this->pegawai->getPegawai($kode);
 
-        $this->pegawai->save([
-            'kode' => $kode,
-            'nip' => $this->request->getVar('nip'),
-            'nik' => $this->request->getVar('nik'),
-            'nama' => $this->request->getVar('nama'),
-            'akun_email' => $this->request->getVar('email'),
-            'akun_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'status' => 1,
-            'level' => $this->request->getVar('level')
-        ]);
+        if ($pegawai['akun_password'] == $this->request->getVar('password')) {
+            $this->pegawai->save([
+                'kode' => $kode,
+                'nama' => $this->request->getVar('nama'),
+                'nip' => $this->request->getVar('nip'),
+                'nik' => $this->request->getVar('nik'),
+                'no_hp' => $this->request->getVar('no_hp'),
+                'jk' => $this->request->getVar('jk'),
+                'alamat' => $this->request->getVar('alamat'),
+                'akun_email' => $this->request->getVar('email'),
+                'status' => 1,
+                'level' => $this->request->getVar('level')
+            ]);
+        } else {
+            $this->pegawai->save([
+                'kode' => $kode,
+                'nama' => $this->request->getVar('nama'),
+                'nip' => $this->request->getVar('nip'),
+                'nik' => $this->request->getVar('nik'),
+                'no_hp' => $this->request->getVar('no_hp'),
+                'jk' => $this->request->getVar('jk'),
+                'alamat' => $this->request->getVar('alamat'),
+                'akun_email' => $this->request->getVar('email'),
+                'akun_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'status' => 1,
+                'level' => $this->request->getVar('level')
+            ]);
+        }
+
 
         session()->setFlashdata('msg', 'Data Berhasil diubah !');
 

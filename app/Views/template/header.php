@@ -39,16 +39,16 @@
                 <li>
                     <div class="image mr-2">
                         <img src="<?= base_url('public/img/profile.png'); ?>" class="img-circle" width="30" height="30" alt="User Image">
-                        <a> - Administrtor |</a>
+                        <a><?= session()->get('nama'); ?></a>
                     </div>
                 </li>
-                <li>
+                <!-- <li>
                     <div class="mt-1 text-red">
                         <i class="fas fa-sign-out-alt"></i>
                         <a class="text-decoration-none text-red" href="#" data-toggle="modal" data-target="#logoutModal">
                             Logout
                         </a>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </nav>

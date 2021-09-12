@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use PHPExcel;
+use PHPExcel_IOFactory;
 use App\Models\SiswaModel;
 
 class Siswa extends BaseController
@@ -15,12 +17,26 @@ class Siswa extends BaseController
 
     public function index()
     {
+        $currentPage = $this->request->getVar('page_siswa') ? $this->request->getVar('page_siswa') : 1;
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $siswa = $this->siswa->search($keyword);
+        } else {
+            $siswa = $this->siswa;
+        }
+
         $data = [
             'validation' => \Config\Services::validation(),
-            'siswa' => $this->siswa->findAll(),
+            //'siswa' => $this->siswa->findAll(),
+            'siswa' => $siswa->paginate(7, 'siswa'),
+            'pager' => $this->siswa->pager,
+            'currentPage' => $currentPage
         ];
         return view('dashboard/siswa/index', $data);
     }
+
+
 
     public function tambah()
     {
@@ -479,5 +495,42 @@ class Siswa extends BaseController
         $this->siswa->delete(['kode' => $kode]);
 
         return redirect()->to(base_url('/siswa'));
+    }
+
+    public function download()
+    {
+        return view('dashboard/siswa/download');
+    }
+
+    public function prosesExcel()
+    {
+        // $file = $this->request->getFile('fileexcel');
+        // if ($file) {
+        //     $excelReader  = new PHPExcel();
+        //     //mengambil lokasi temp file
+        //     $fileLocation = $file->getTempName();
+        //     //baca file
+        //     $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+        //     //ambil sheet active
+        //     $sheet    = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+        //     //looping untuk mengambil data
+        //     foreach ($sheet as $idx => $data) {
+        //         //skip index 1 karena title excel
+        //         if ($idx == 1) {
+        //             continue;
+        //         }
+        //         $nama = $data['A'];
+        //         $hp = $data['B'];
+        //         $email = $data['C'];
+        //         // insert data
+        //         $this->siswa->insert([
+        //             'nama' => $nama,
+        //             'handphone' => $hp,
+        //             'email' => $email
+        //         ]);
+        //     }
+        // }
+        // session()->setFlashdata('message', 'Berhasil import excel');
+        // return redirect()->to('/home');
     }
 }

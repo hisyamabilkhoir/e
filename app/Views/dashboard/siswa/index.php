@@ -12,10 +12,20 @@
                 </div>
             </div>
             <div class="row mb-2 mt-4">
-                <div class="col-sm-2">
+                <div class="col-12">
                     <a href="<?= base_url(); ?>/siswa/tambah">
                         <button type="submit" class='btn btn-info'>
                             <i class='fa fa-plus'></i> Tambah Siswa
+                        </button>
+                    </a>
+                    <a href="<?= base_url(); ?>/siswa/tambah">
+                        <button type="submit" class='btn btn-success float-right'>
+                            <i class="fa fa-file-excel pr-2" aria-hidden="true"></i>Import Data
+                        </button>
+                    </a>
+                    <a href="<?= base_url(); ?>/siswa/download">
+                        <button type="submit" class='btn btn-warning float-right mr-4'>
+                            <i class='fa fa-download'></i> Download Format
                         </button>
                     </a>
                 </div>
@@ -30,10 +40,10 @@
 
             <?php
             if (!empty(session()->getFlashdata('msg'))) { ?>
-            <div class="alert p-4 alert-success">
-                <h4><i class="icon fas fa-check"></i> Selamat!</h4>
-                <h6><?php echo session()->getFlashdata('msg'); ?></h6>
-            </div>
+                <div class="alert p-4 alert-success">
+                    <h4><i class="icon fas fa-check"></i> Selamat!</h4>
+                    <h6><?php echo session()->getFlashdata('msg'); ?></h6>
+                </div>
             <?php } ?>
 
 
@@ -63,15 +73,16 @@
                         <div class='card-header'>
                             <h3 class='card-title'>Data Siswa</h3>
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 190px;">
-                                    <input type="text" name="keyword" class="form-control float-right"
-                                        placeholder="Cari Siswa ....">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-info">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                <form action="" method="POST">
+                                    <div class="input-group input-group-sm mt-1" style="width: 190px;">
+                                        <input type="text" name="keyword" class="form-control float-right" placeholder="Cari Siswa ....">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-info">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div class='card-body'>
@@ -91,29 +102,29 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($siswa as $s) : ?>
 
-                                    <tr>
-                                        <td class='text-center'><?= $i++ ?></td>
-                                        <td class='text-center'><?= $s['nomor_induk']; ?></td>
-                                        <td class='text-center'><?= $s['nisn']; ?></td>
-                                        <td class='text-center'><?= $s['nik']; ?></td>
-                                        <td><?= $s['nama_lengkap']; ?></td>
-                                        <td class='text-center'>
-                                            <?= $s['jk']; ?>
-                                        </td>
-                                        <td class='text-center'>
-                                            <!-- <a href="javascript:void(0)" data-toggle="modal"
+                                        <tr>
+                                            <td class='text-center'><?= $i++ ?></td>
+                                            <td class='text-center'><?= $s['nomor_induk']; ?></td>
+                                            <td class='text-center'><?= $s['nisn']; ?></td>
+                                            <td class='text-center'><?= $s['nik']; ?></td>
+                                            <td><?= $s['nama_lengkap']; ?></td>
+                                            <td class='text-center'>
+                                                <?= $s['jk']; ?>
+                                            </td>
+                                            <td class='text-center'>
+                                                <!-- <a href="javascript:void(0)" data-toggle="modal"
                                                 data-target="#modal-form-edit-student" onclick="edit_student(11)"
                                                 class='badge badge-primary'>detail
                                             </a> -->
-                                            <a href="<?= base_url(); ?>/siswa/ubah/<?= $s['kode']; ?>"
-                                                class="badge badge-success">Telusuri</a>
-                                            <a href="<?= base_url(); ?>/siswa/hapus/<?= $s['kode']; ?>"
-                                                class="badge badge-danger hapus-siswa">Hapus</a>
-                                        </td>
-                                    </tr>
+                                                <a href="<?= base_url(); ?>/siswa/ubah/<?= $s['kode']; ?>" class="badge badge-success">Telusuri</a>
+                                                <a href="<?= base_url(); ?>/siswa/hapus/<?= $s['kode']; ?>" class="badge badge-danger hapus-siswa">Hapus</a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <br>
+                            <?= $pager->links('siswa', 'siswa_pagination'); ?>
                         </div>
                     </div>
                 </div>

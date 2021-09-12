@@ -2,56 +2,62 @@
     <input type="hidden" name='kode' value="<?= $DetailPegawai['kode']; ?>">
     <div class="row">
         <div class='col-md-12'>
-            <div class='form-group'>
-                <label>kode</label>
-                <input type='text' name='Dkode' placeholder="kode" class="form-control" required
-                    value="<?= $DetailPegawai['kode']; ?>" disabled>
+
+            <div class="form-row">
+                <div class='form-group col-md-4'>
+                    <label>Kode</label>
+                    <p><?= $DetailPegawai['kode']; ?></p>
+                </div>
+                <div class='form-group col-md-4'>
+                    <label>Nama</label>
+                    <p><?= $DetailPegawai['nama']; ?></p>
+                </div>
+                <div class='form-group col-md-4'>
+                    <label>Email</label>
+                    <p><?= $DetailPegawai['akun_email']; ?></p>
+                </div>
             </div>
-            <div class='form-group'>
-                <label>Nama</label>
-                <input type='text' name='Dnama' placeholder="nama" class="form-control" required
-                    value="<?= $DetailPegawai['nama']; ?>" disabled>
+
+            <div class="form-row">
+                <div class='form-group col-md-4'>
+                    <label>NIP</label>
+                    <p><?= $DetailPegawai['nip']; ?></p>
+                </div>
+                <div class='form-group col-md-4'>
+                    <label>Jenis Kelamin</label>
+                    <?php if ($DetailPegawai['jk'] = "L") : ?>
+                        <p>Laki-laki</p>
+                    <?php else : ?>
+                        <p>Perempuan</p>
+                    <?php endif; ?>
+                </div>
+                <div class='form-group col-md-4'>
+                    <label>Nomor Handphone</label>
+                    <p><?= $DetailPegawai['no_hp']; ?></p>
+                </div>
             </div>
-            <div class='form-group'>
-                <label>Nip</label>
-                <input type='text' name='Dnip' placeholder="nip" class="form-control" required
-                    value="<?= $DetailPegawai['nip']; ?>" disabled>
+
+            <div class="form-row">
+                <div class='form-group col-md-4'>
+                    <label>NIK</label>
+                    <p><?= $DetailPegawai['nik']; ?></p>
+                </div>
+                <div class='form-group col-md-8'>
+                    <label>Alamat</label>
+                    <p><?= $DetailPegawai['alamat']; ?></p>
+                </div>
             </div>
-            <div class='form-group'>
-                <label>Nik</label>
-                <input type='text' name='Dnik' placeholder="nik" class="form-control" required
-                    value="<?= $DetailPegawai['nik']; ?>" disabled>
-            </div>
-            <div class='form-group'>
-                <label>Email</label>
-                <input type='text' name='Demail' placeholder="email" class="form-control" required
-                    value="<?= $DetailPegawai['akun_email']; ?>" disabled>
-            </div>
-            <div class='form-group'>
-                <label>Password</label>
-                <input type='password' name='Dpassword' placeholder="password" class="form-control" required
-                    value="<?= $DetailPegawai['akun_password']; ?>" disabled>
-            </div>
+
             <div class='form-group'>
                 <label>Level</label>
-                <select name='level' class='form-control' disabled>
-                    <option <?php echo $DetailPegawai["level"] == 1 ? "selected" : ""; ?>
-                        value="<?= $DetailPegawai["level"]; ?>">
-                        Operator</option>
-                    <option <?php echo $DetailPegawai["level"] == 2 ? "selected" : ""; ?>
-                        value="<?= $DetailPegawai["level"]; ?>">
-                        Kepala Sekolah</option>
-                    <option <?php echo $DetailPegawai["level"] == 3 ? "selected" : ""; ?>
-                        value="<?= $DetailPegawai["level"]; ?>">
-                        Waka Akademin</option>
-                    <option <?php echo $DetailPegawai["level"] == 4 ? "selected" : ""; ?>
-                        value="<?= $DetailPegawai["level"]; ?>">
-                        Wali Kelas</option>
-                    <option <?php echo $DetailPegawai["level"] == 5 ? "selected" : ""; ?>
-                        value="<?= $DetailPegawai["level"]; ?>">
-                        Guru Mapel</option>
-                </select>
+                <?php if ($DetailPegawai['level'] = 1) : ?>
+                    <p>Operator</p>
+                <?php else : ?>
+                    <p>Guru</p>
+                <?php endif; ?>
             </div>
+
+
         </div>
     </div>
 

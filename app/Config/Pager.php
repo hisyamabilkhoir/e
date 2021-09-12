@@ -26,6 +26,7 @@ class Pager extends BaseConfig
 		'default_head'   => 'CodeIgniter\Pager\Views\default_head',
 		'pegawai_pagination' => 'App\Views\Pagers\pegawai_pagination',
 		'template_pagination' => 'CodeIgniter\Pager\Views\template_pagination',
+		'siswa_pagination' => 'App\Views\Pagers\siswa_pagination',
 	];
 
 	/**

@@ -30,4 +30,10 @@ class SiswaModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function search($keyword)
+    {
+        return $this->table('siswa')->like('nama_lengkap', $keyword)
+            ->orLike('nomor_induk', $keyword);
+    }
 }
