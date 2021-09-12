@@ -32,4 +32,26 @@ class MataPelajaranModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function mapelValid($idKelas, $nama_mapel, $idTahun, $idKelompok)
+    {
+        return $this->db->table('mata_pelajaran')
+            ->join('kelas', 'kelas.id = mata_pelajaran.id_kelas')
+            ->join('kelompok_mata_pelajaran', 'kelompok_mata_pelajaran.id = mata_pelajaran.id_kelompok_mapel_kelas')
+            ->where(['mata_pelajaran.nama_mapel' => $nama_mapel, 'kelompok_mata_pelajaran.id_kelas' => $idKelas, 'mata_pelajaran.id_tahun' => $idTahun, 'kelompok_mata_pelajaran.id' => $idKelompok])
+            ->select(['mata_pelajaran.nama_mapel', 'kelompok_mata_pelajaran.nama_kelompok', 'mata_pelajaran.id', 'mata_pelajaran.id_kelompok_mapel_kelas'])
+            ->get()
+            ->getResultArray();
+    }
+
+    public function updateMapelValid($idKelas, $nama_mapel, $idTahun)
+    {
+        return $this->db->table('mata_pelajaran')
+            ->join('kelas', 'kelas.id = mata_pelajaran.id_kelas')
+            ->join('kelompok_mata_pelajaran', 'kelompok_mata_pelajaran.id = mata_pelajaran.id_kelompok_mapel_kelas')
+            ->where(['mata_pelajaran.nama_mapel' => $nama_mapel, 'kelompok_mata_pelajaran.id_kelas' => $idKelas, 'mata_pelajaran.id_tahun' => $idTahun])
+            ->select(['mata_pelajaran.nama_mapel', 'kelompok_mata_pelajaran.nama_kelompok', 'mata_pelajaran.id', 'mata_pelajaran.kode_guru', 'mata_pelajaran.id_kelompok_mapel_kelas'])
+            ->get()
+            ->getResultArray();
+    }
 }

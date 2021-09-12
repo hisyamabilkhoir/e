@@ -40,6 +40,9 @@ if (session()->get('logged_in') == null) {
 }
 
 $routes->get('/TahunPelajaran/edit', 'AjaxController::edit_tahun_pelajaran');
+$routes->get('/mataPelajaran/edit', 'AjaxController::edit_mapel');
+$routes->get('/kelompokMapel/edit', 'AjaxController::edit_kelompok_mapel');
+$routes->get('/mataPelajaran/tambah', 'AjaxController::tambah_mapel');
 $routes->post('/WaliKelas/KelasSiswa', 'AjaxController::kelas_siswa');
 $routes->get('/WaliKelas/deleteAnggota', 'AjaxController::delete_anggota');
 $routes->get('/Kelas/edit', 'AjaxController::edit_kelas');

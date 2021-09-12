@@ -35,10 +35,6 @@ class Auth extends BaseController
         //$user = $this->db->get_where('user', ['akun_email' => $email])->row_array();
         $user = $this->pegawai->where(['akun_email' => $email])->first();
 
-
-
-        // dd($walas);
-
         if ($user) {
             $tahunActive = $this->tahun_pelajaran->getActive('1');
             $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();

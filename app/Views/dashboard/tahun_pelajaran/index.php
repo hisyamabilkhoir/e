@@ -69,12 +69,11 @@
     </div>
     <!-- /.content-header -->
 
-
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
             <div class="modal fade" id="modal-form-edit-year">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header text-gray-100" style="background-color: #17a2b8; color: white;">
                             <h4 class="modal-title">Edit Tahun Pelajaran</h4>
