@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use PHPExcel;
 use PHPExcel_IOFactory;
+
+
 use App\Models\SiswaModel;
 
 class Siswa extends BaseController
@@ -11,6 +13,7 @@ class Siswa extends BaseController
     protected $siswa;
     public function __construct()
     {
+        helper("form");
         $this->siswa = new SiswaModel();
         $this->req = \Config\Services::request();
     }
@@ -212,8 +215,9 @@ class Siswa extends BaseController
         }
 
         helper('text');
-        $code_random = random_string('alnum', 6,);
+        $code_random = random_string('alnum', 7);
         $code = strtoupper($code_random);
+
 
         $this->siswa->insert([
             'kode' => $code,
@@ -494,43 +498,90 @@ class Siswa extends BaseController
 
         $this->siswa->delete(['kode' => $kode]);
 
+        session()->setFlashdata('msg', 'Data Berhasil dihapus !');
+
         return redirect()->to(base_url('/siswa'));
     }
 
     public function download()
     {
-        return view('dashboard/siswa/download');
+        return $this->response->download('public/excel/contoh.xlsx', null);
+    }
+
+    public function view_import()
+    {
+        return view('dashboard/siswa/view_import');
     }
 
     public function prosesExcel()
     {
-        // $file = $this->request->getFile('fileexcel');
-        // if ($file) {
-        //     $excelReader  = new PHPExcel();
-        //     //mengambil lokasi temp file
-        //     $fileLocation = $file->getTempName();
-        //     //baca file
-        //     $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
-        //     //ambil sheet active
-        //     $sheet    = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-        //     //looping untuk mengambil data
-        //     foreach ($sheet as $idx => $data) {
-        //         //skip index 1 karena title excel
-        //         if ($idx == 1) {
-        //             continue;
-        //         }
-        //         $nama = $data['A'];
-        //         $hp = $data['B'];
-        //         $email = $data['C'];
-        //         // insert data
-        //         $this->siswa->insert([
-        //             'nama' => $nama,
-        //             'handphone' => $hp,
-        //             'email' => $email
-        //         ]);
-        //     }
-        // }
-        // session()->setFlashdata('message', 'Berhasil import excel');
-        // return redirect()->to('/home');
+        $file = $this->request->getFile('file_excel');
+        $ext = $file->getClientExtension();
+
+        //$inputFileType = 'Xlsx';
+
+        if ($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        } else {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        }
+
+        //$reader =  \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+
+
+        $spreadsheet = $render->load($file);
+        $sheet = $spreadsheet->getActiveSheet()->toArray();
+
+        foreach ($sheet as $x => $excel) {
+            //skip judul tabel
+            if ($x == 0) {
+                continue;
+            }
+
+            helper('text');
+            $code_random = random_string('alnum', 7);
+            $code = strtoupper($code_random);
+
+            //format tanggal lahir
+            $tgl_lahir = strtotime($excel['5']);
+            $tanggal_lahir = date('Y-m-d', $tgl_lahir);
+
+            //format tanggal diterima
+            $tgl_diterima = strtotime($excel['14']);
+            $tanggal_diterima = date('Y-m-d', $tgl_diterima);
+
+            $this->siswa->insert([
+                'kode' => $code,
+                'nomor_induk' => $excel['0'],
+                'nisn' => $excel['1'],
+                'nik' => $excel['2'],
+                'nama_lengkap' => $excel['3'],
+                'tempat_lahir' => $excel['4'],
+                'tgl_lahir' => $tanggal_lahir,
+                'jk' => $excel['6'],
+                'agama' => $excel['7'],
+                'status_dalam_keluarga' => $excel['8'],
+                'anak_ke' => $excel['9'],
+                'alamat_siswa' => $excel['10'],
+                'nomor_handphone_peserta_didik' => $excel['11'],
+                'sekolah_asal' => $excel['12'],
+                'kelas_diterima' => $excel['13'],
+                'tgl_diterima' => $tanggal_diterima,
+                'nama_ayah' => $excel['15'],
+                'nama_ibu' => $excel['16'],
+                'alamat_ortu' => $excel['17'],
+                'nomor_telpon_ortu' => $excel['18'],
+                'pekerjaan_ayah' => $excel['19'],
+                'pekerjaan_ibu' => $excel['20'],
+                'nama_wali' => $excel['21'],
+                'alamat_wali' => $excel['22'],
+                'nomor_telpon_wali' => $excel['23'],
+                'pekerjaan_wali' => $excel['24'],
+                'status' => 1,
+            ]);
+        }
+
+        session()->setFlashdata('msg', 'Data Siswa Berhasil ditambahkan !');
+        return redirect()->to(base_url('/siswa'));
     }
 }
