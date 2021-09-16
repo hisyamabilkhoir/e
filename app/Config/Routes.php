@@ -34,7 +34,9 @@ $routes->setAutoRoute(true);
 //$routes->get('/', 'Home::index');
 if (session()->get('logged_in')) {
 	$routes->get('/auth', 'Auth::index', ['filter' => 'logout']);
+	$routes->get('/', 'Auth::index', ['filter' => 'logout']);
 }
+
 $routes->get('/', 'Auth::index');
 $routes->get('/auth', 'Auth::index');
 

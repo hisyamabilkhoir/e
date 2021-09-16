@@ -7,15 +7,14 @@
 
         <div class="col-md-10">
             <div class='form-group'>
-                <label>Tambah Kelompok</label>
+                <label>Ubah Kelompok</label>
                 <input required value="<?= $kelompokMapel['nama_kelompok']; ?>" type='text' name='nama_kelompok' placeholder="Nama Kelompok" class='form-control'>
             </div>
         </div>
         <div class="col-md-2">
             <div class='form-group'>
                 <label>&nbsp;</label>
-                <button type="submit" class='btn btn-block btn-info'>
-                    <i class='fa fa-plus'></i> Tambah
+                <button type="submit" class='btn btn-block btn-info'> Ubah
                 </button>
             </div>
         </div>

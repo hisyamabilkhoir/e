@@ -19,8 +19,7 @@
         </select>
     </div>
     <div class='form-group'>
-        <button type="submit" class='btn btn-block btn-info'>
-            <i class='fa fa-plus'></i> Tambah
+        <button type="submit" class='btn btn-block btn-info'> Ubah
         </button>
     </div>
 </form>
