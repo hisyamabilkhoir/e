@@ -505,7 +505,7 @@ class Siswa extends BaseController
 
     public function download()
     {
-        return $this->response->download('public/excel/contoh.xlsx', null);
+        return $this->response->download('public/excel/Format Siswa.xlsx', null);
     }
 
     public function view_import()

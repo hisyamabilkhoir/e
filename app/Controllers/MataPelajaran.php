@@ -135,7 +135,7 @@ class MataPelajaran extends BaseController
 
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/WaliKelas/tambahSiswa/' . $id_kelas)->withInput()->with('validation', $validation);
+            return redirect()->to('/WaliKelas/tambahSiswa/' . $id_kelas . "/?active=custom-content-below-profile")->withInput()->with('validation', $validation);
         }
 
 
@@ -149,7 +149,7 @@ class MataPelajaran extends BaseController
 
         session()->setFlashdata('msg', 'Data Berhasil ditambahkan');
 
-        return redirect()->to('/WaliKelas/tambahSiswa/' . $id_kelas);
+        return redirect()->to('/WaliKelas/tambahSiswa/' . $id_kelas . "/?active=custom-content-below-profile");
     }
 
     public function edit_mapel()
@@ -181,7 +181,7 @@ class MataPelajaran extends BaseController
 
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas)->withInput()->with('validation', $validation);
+            return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile")->withInput()->with('validation', $validation);
         }
 
         $this->mapel->save([
@@ -192,7 +192,7 @@ class MataPelajaran extends BaseController
 
         session()->setFlashdata('msg', 'Data Berhasil Ubah');
 
-        return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas);
+        return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile");
     }
 
     public function updateKelompokMapel()
@@ -219,7 +219,7 @@ class MataPelajaran extends BaseController
 
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas)->withInput()->with('validation', $validation);
+            return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile")->withInput()->with('validation', $validation);
         }
 
         $this->kelompok_mapel->save([
@@ -229,7 +229,7 @@ class MataPelajaran extends BaseController
 
         session()->setFlashdata('msg', 'Data Berhasil Ubah');
 
-        return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas);
+        return redirect()->to('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile");
     }
 
     public function print($id_kelas)
@@ -248,11 +248,11 @@ class MataPelajaran extends BaseController
         $idMapel = $this->mapel->find($idMapel);
         if (!$idMapel) {
             session()->setFlashdata('warning', 'Data yang di cari tidak ada');
-            return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas));
+            return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile"));
         }
         $this->mapel->delete($idMapel);
         session()->setFlashdata('success', 'Data berhasil di hapus');
-        return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas));
+        return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile"));
     }
 
     public function hapusKelompok($idMapel, $idKelas)
@@ -260,10 +260,10 @@ class MataPelajaran extends BaseController
         $idKelompokMapel = $this->kelompok_mapel->find($idMapel);
         if (!$idKelompokMapel) {
             session()->setFlashdata('warning', 'Data yang di cari tidak ada');
-            return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas));
+            return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile"));
         }
         $this->kelompok_mapel->delete($idKelompokMapel);
         session()->setFlashdata('success', 'Data berhasil di hapus');
-        return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas));
+        return redirect()->to(base_url('/WaliKelas/tambahSiswa/' . $idKelas . "/?active=custom-content-below-profile"));
     }
 }
