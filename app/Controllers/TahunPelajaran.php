@@ -59,8 +59,13 @@ class TahunPelajaran extends BaseController
         if (!$this->validate($valid)) {
             return redirect()->to(base_url('TahunPelajaran'))->withInput();
         } else {
+            $tahunActive = $this->tahun_pelajaran->getActive('1');
+            $resultTP = $this->tahun_pelajaran->getActive($this->req->getVar('active'));
+            // Jika menambah tahun dengan ceklis aktif
             if ($this->req->getVar('active') == '1') {
-                $resultTP = $this->tahun_pelajaran->getActive($this->req->getVar('active'));
+                // Cek apakah ada tahun aktif di database
+                // Jika ada ganti dengan yang baru di input
+
                 if ($resultTP != null) {
                     $resultTP["status"] = 0;
                     $this->tahun_pelajaran->save([
@@ -74,6 +79,8 @@ class TahunPelajaran extends BaseController
                     ]);
                 }
 
+
+                // Jika tidak ada langsung tambah
                 $this->tahun_pelajaran->save([
                     'tahun_awal' => $this->req->getVar('awal'),
                     'tahun_akhir' => $this->req->getVar('akhir'),
@@ -85,7 +92,13 @@ class TahunPelajaran extends BaseController
                 session()->setFlashdata('success', 'Data berhasil di buat');
                 return redirect()->to(base_url('TahunPelajaran'));
             }
+            // Cek Apakah ketika menambah tahun pelajaran ternyata tidak ada yang aktif
+            if ($this->req->getVar('active') == null && $tahunActive == null) {
+                session()->setFlashdata('danger', 'Tahun pelajaran harus ada yang aktif');
+                return redirect()->to(base_url('TahunPelajaran'));
+            }
 
+            // Jika tidak memakai ceklis langsung tambah
             $this->tahun_pelajaran->save([
                 'tahun_awal' => $this->req->getVar('awal'),
                 'tahun_akhir' => $this->req->getVar('akhir'),
@@ -141,8 +154,12 @@ class TahunPelajaran extends BaseController
         if (!$this->validate($valid)) {
             return redirect()->to(base_url('/TahunPelajaran'))->withInput();
         } else {
+            // Jika menambah tahun dengan ceklis aktif
             if ($this->req->getVar('active') == '1') {
                 $resultTP = $this->tahun_pelajaran->getActive($this->req->getVar('active'));
+
+                // Cek apakah ada tahun aktif di database
+                // Jika ada ganti dengan yang baru di input
                 if ($resultTP != null) {
                     $resultTP["status"] = 0;
                     $this->tahun_pelajaran->save([
@@ -154,6 +171,8 @@ class TahunPelajaran extends BaseController
                         'titimangsa_semester_genap' => $resultTP["titimangsa_semester_genap"],
                         'status' => '0',
                     ]);
+
+                    // Jika tidak ada langsung Ubah
                     $this->tahun_pelajaran->save([
                         'id' => $this->req->getVar('id'),
                         'tahun_awal' => $this->req->getVar('update_awal'),
@@ -169,20 +188,26 @@ class TahunPelajaran extends BaseController
             }
             $activeForm = $this->req->getVar('id');
             $resultTP = $this->tahun_pelajaran->getActive('1');
-
-            if ($resultTP['id'] == $activeForm) {
-                session()->setFlashdata('peringatan', 'Tahun pelajaran harus ada yang aktif');
-                return redirect()->to(base_url('TahunPelajaran'));
+            // Jika ada tahun pelajaran yang non-aktif
+            // Cek jika ada tahun yang aktif
+            if ($resultTP) {
+                // Cek jika user menonaktifkan tahun aktif, tapitidak ada tahun aktif lagi
+                if ($resultTP['id'] == $activeForm) {
+                    session()->setFlashdata('peringatan', 'Tahun pelajaran harus ada yang aktif');
+                    return redirect()->to(base_url('TahunPelajaran'));
+                }
             }
-            $this->tahun_pelajaran->save([
-                'id' => $this->req->getVar('id'),
-                'tahun_awal' => $this->req->getVar('update_awal'),
-                'tahun_akhir' => $this->req->getVar('update_akhir'),
-                'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
-                'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
-                'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
-                'status' => $this->req->getVar('active')
-            ]);
+            if ($resultTP == null) {
+                $this->tahun_pelajaran->save([
+                    'id' => $this->req->getVar('id'),
+                    'tahun_awal' => $this->req->getVar('update_awal'),
+                    'tahun_akhir' => $this->req->getVar('update_akhir'),
+                    'titimangsa_siswa_baru' => $this->req->getVar('titimangsa_siswa_baru'),
+                    'titimangsa_semester_ganjil' => $this->req->getVar('titimangsa_semester_ganjil'),
+                    'titimangsa_semester_genap' => $this->req->getVar('titimangsa_semester_genap'),
+                    'status' => $this->req->getVar('active')
+                ]);
+            }
             session()->setFlashdata('success', 'Data berhasil di ubah');
             return redirect()->to(base_url('TahunPelajaran'));
         }

@@ -24,31 +24,25 @@
 
                                 <?php
                                 if (!empty(session()->getFlashdata('msg'))) { ?>
-                                <div class="alert alert-danger">
-                                    <?php echo session()->getFlashdata('msg'); ?>
-                                </div>
+                                    <div class="alert alert-danger">
+                                        <?php echo session()->getFlashdata('msg'); ?>
+                                    </div>
                                 <?php } ?>
 
 
                                 <form class="user" method="post" action="<?= base_url(); ?>/auth/proces_login">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email"
-                                            name="email" placeholder="Email">
+                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email">
 
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password"
-                                            name="password" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
 
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Login
                                     </button>
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>/auth/forgotpassword">Lupa Password?</a>
-                                </div>
                             </div>
                         </div>
                     </div>

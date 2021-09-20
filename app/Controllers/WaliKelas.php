@@ -30,22 +30,6 @@ class WaliKelas extends BaseController
         $this->req = \Config\Services::request();
     }
 
-    public function kelas()
-    {
-        $walas = session()->get('is_walas');
-        $tahunActive = $this->tahunPelajaran->getActive('1');
-        $data = [
-            'walas' => $this->kelas->getDataWalas($tahunActive['tahun_awal'], $tahunActive['tahun_akhir'], $walas),
-            'siswa' => $this->siswa->getDataSiswa(1),
-            'kelas' => $this->kelas->where(['id_tahun_pelajaran' => $tahunActive['id']])->findAll(),
-            'semua_kelas' => $this->kelas->getDetailKelas($walas),
-            'tahunActive' => $tahunActive,
-            'idKelas' => $walas,
-        ];
-        // dd($data);
-        return view('dashboard/wali_kelas/index', $data);
-    }
-
     public function detailSiswa($kode)
     {
         $tahunActive = $this->tahunPelajaran->getActive('1');

@@ -21,11 +21,6 @@ class Auth extends BaseController
         return view("auth/login");
     }
 
-    public function forgotpassword()
-    {
-        return view("auth/lupa_password");
-    }
-
     public function proces_login()
     {
 
@@ -36,21 +31,38 @@ class Auth extends BaseController
         $user = $this->pegawai->where(['akun_email' => $email])->first();
 
         if ($user) {
-            $tahunActive = $this->tahun_pelajaran->getActive('1');
-            $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();
 
-            if ($walas == null) {
-                $walas = false;
-            } else {
-                $walas = $walas['id'];
-            }
             //jika usernya aktif
             if ($user['status'] == 1) {
                 //cek password
                 $pass = $user['akun_password'];
                 $verify_pass = password_verify($password, $pass);
                 if ($verify_pass) {
-                    // dd($walas);
+
+                    $tahunActive = $this->tahun_pelajaran->getActive('1');
+                    if ($user['level'] == '1' && $tahunActive == null) {
+                        $data = [
+                            'logged_in'     => true,
+                            'email' => $user['akun_email'],
+                            'level' => $user['level'],
+                            'nama' => $user['nama'],
+                        ];
+                        session()->set($data);
+                        session()->setFlashdata('danger', 'Tahun Pelajaran Tidak ada yang aktif, di mohon untuk mengaktifkan tahun pelajaran!');
+                        return redirect()->to(base_url('/TahunPelajaran'));
+                    }
+                    if ($user['level'] != '1'  && $tahunActive == null) {
+                        session()->setFlashdata('msg', 'Tahun Pelajaran Tidak ada yang aktif, di mohon untuk memberitahukan operator!');
+                        return redirect()->to(base_url('/auth'));
+                    }
+                    $walas = $this->kelas->where(['kode_walas' => $user['kode'], 'id_tahun_pelajaran' => $tahunActive['id']])->first();
+
+                    if ($walas == null) {
+                        $walas = false;
+                    } else {
+                        $walas = $walas['id'];
+                    }
+
                     $data = [
                         'email' => $user['akun_email'],
                         'level' => $user['level'],
@@ -60,7 +72,6 @@ class Auth extends BaseController
                         'tahun_akhir' => $tahunActive['tahun_akhir'],
                         'logged_in'     => true,
                     ];
-                    // $this->session->set_userdata($data);
                     session()->set($data);
 
                     if ($data['level'] == 1) {
